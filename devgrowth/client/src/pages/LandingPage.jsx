@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { ThemeContext } from '../context/ThemeContext';
+import BackgroundMesh from '../components/common/BackgroundMesh';
 import LandingLoadingModal from '../components/landing/LandingLoadingModal';
 import {
   Sparkles,
@@ -52,20 +53,16 @@ export const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 transition-colors duration-200 overflow-x-hidden selection:bg-indigo-500/25 selection:text-indigo-400">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 overflow-x-hidden selection:bg-indigo-500/25 selection:text-indigo-400 relative">
+      {/* Dynamic Aurora, Tech Grid & Cosmic Mesh */}
+      <BackgroundMesh />
+
       {/* 2-Second Visual Transition Overlay */}
       <LandingLoadingModal
         isOpen={isTransitioning}
         targetPage={targetAuthPage}
         onComplete={handleLoadingComplete}
       />
-
-      {/* Ambient glowing backdrop gradients */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/15 dark:bg-indigo-500/20 rounded-full blur-[128px]" />
-        <div className="absolute top-1/4 -right-40 w-96 h-96 bg-purple-500/15 dark:bg-purple-500/20 rounded-full blur-[128px]" />
-        <div className="absolute top-2/3 left-1/3 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-[140px]" />
-      </div>
 
       {/* Top Navigation */}
       <header className="sticky top-0 z-40 w-full glass-header backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80">

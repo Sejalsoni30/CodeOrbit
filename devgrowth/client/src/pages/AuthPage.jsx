@@ -118,32 +118,48 @@ export const AuthPage = ({ initialTab = 'login' }) => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center py-8 px-4 sm:px-6">
-      {/* Spacious container: max-w-xl (576px) */}
-      <div className="glass-card max-w-xl w-full p-8 sm:p-10 border border-slate-200/90 dark:border-slate-700/80 shadow-2xl relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute -right-16 -top-16 w-56 h-56 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center py-10 px-4 sm:px-6 relative z-10">
+      <div className="relative max-w-xl w-full">
+        {/* Floating Decorative Tech Chips for desktop */}
+        <div className="hidden xl:flex items-center space-x-2 px-3.5 py-2 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold shadow-xl absolute -left-20 top-20 -rotate-6 animate-float z-20">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Cloud Firestore TLS</span>
+        </div>
+        <div className="hidden xl:flex items-center space-x-2 px-3.5 py-2 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 text-xs font-bold shadow-xl absolute -right-20 bottom-24 rotate-6 animate-float-delayed z-20">
+          <ShieldCheck className="w-4 h-4 text-indigo-500" />
+          <span>TOTP 2FA Protected</span>
+        </div>
 
-        <div className="mb-6 text-center">
-          <div className="flex items-center justify-between mb-4">
-            <button
-              onClick={() => navigate('/landing')}
-              className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-indigo-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Landing Page</span>
-            </button>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-              Secure Gateway
-            </span>
-          </div>
+        {/* Spacious Card Container */}
+        <div className="glass-card w-full border border-indigo-100 dark:border-slate-800/90 shadow-[0_20px_60px_-15px_rgba(99,102,241,0.22),0_0_40px_rgba(168,85,247,0.12)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),0_0_40px_rgba(99,102,241,0.2)] rounded-3xl overflow-hidden relative">
+          {/* Top Iridescent Gradient Beam */}
+          <div className="h-1.5 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
 
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center mx-auto mb-3 shadow-lg shadow-indigo-500/25">
-            <Sparkles className="w-6 h-6" />
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-            {tab === 'login' ? 'Welcome Back' : 'Create Your Account'}
-          </h2>
+          {/* Ambient Inner Glow */}
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-indigo-500/15 dark:bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-purple-500/15 dark:bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="p-8 sm:p-10 relative z-10">
+            <div className="mb-6 text-center">
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={() => navigate('/landing')}
+                  className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors py-1.5 px-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 shadow-sm"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Back to Landing Page</span>
+                </button>
+                <span className="text-[10px] font-mono font-bold text-indigo-500 dark:text-indigo-400 uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20">
+                  Secure Gateway
+                </span>
+              </div>
+
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-600 text-white flex items-center justify-center mx-auto mb-3 shadow-lg shadow-indigo-500/35 ring-4 ring-indigo-500/15">
+                <Sparkles className="w-7 h-7 text-white" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                {tab === 'login' ? 'Welcome Back' : 'Create Your Account'}
+              </h2>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-md mx-auto">
             {tab === 'login'
               ? 'Sign in to access your engineering metrics, synced directly with Firebase.'
@@ -245,7 +261,9 @@ export const AuthPage = ({ initialTab = 'login' }) => {
             <div className="w-full border-t border-slate-200 dark:border-slate-800" />
           </div>
           <div className="relative flex justify-center text-[11px] uppercase font-bold text-slate-400">
-            <span className="bg-white dark:bg-[#0f172a] px-3">Or continue with email</span>
+            <span className="bg-white/90 dark:bg-slate-900/90 px-3.5 py-0.5 rounded-full border border-slate-200/60 dark:border-slate-800">
+              Or continue with email
+            </span>
           </div>
         </div>
 
@@ -262,7 +280,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="alex@devgrowth.io"
-                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200/90 dark:border-slate-700/90 bg-slate-50/90 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 shadow-sm transition-all"
                   required
                 />
               </div>
@@ -279,13 +297,13 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-11 pr-11 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                  className="w-full pl-11 pr-11 py-3 rounded-2xl border border-slate-200/90 dark:border-slate-700/90 bg-slate-50/90 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 shadow-sm transition-all"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -325,7 +343,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Alex Developer"
-                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200/90 dark:border-slate-700/90 bg-slate-50/90 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 shadow-sm transition-all"
                   required
                 />
               </div>
@@ -341,7 +359,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                   value={regEmail}
                   onChange={(e) => setRegEmail(e.target.value)}
                   placeholder="alex@devgrowth.io"
-                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200/90 dark:border-slate-700/90 bg-slate-50/90 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 shadow-sm transition-all"
                   required
                 />
               </div>
@@ -355,7 +373,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200/90 dark:border-slate-700/90 bg-slate-50/90 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white focus:outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 shadow-sm transition-all cursor-pointer"
                 >
                   <option value="Senior Full Stack Engineer">Senior Full Stack Engineer</option>
                   <option value="Staff Distributed Systems Architect">Staff Distributed Systems Architect</option>
@@ -374,7 +392,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                  className="w-full px-4 py-3 rounded-2xl border border-slate-200/90 dark:border-slate-700/90 bg-slate-50/90 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 shadow-sm transition-all"
                   required
                 />
               </div>
@@ -387,7 +405,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+                  className="w-full px-4 py-3 rounded-2xl border border-slate-200/90 dark:border-slate-700/90 bg-slate-50/90 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 shadow-sm transition-all"
                   required
                 />
               </div>
@@ -396,7 +414,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 px-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl text-sm font-bold shadow-lg shadow-indigo-600/30 flex items-center justify-center space-x-2 transition-all mt-2"
+              className="w-full py-3.5 px-5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-2xl text-sm font-bold shadow-lg shadow-indigo-600/30 flex items-center justify-center space-x-2 transition-all mt-2 active:scale-98"
             >
               <span>Create Account in Firebase</span>
             </button>
@@ -404,10 +422,10 @@ export const AuthPage = ({ initialTab = 'login' }) => {
         )}
 
         {/* Demo Profiles */}
-        <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
-          <p className="text-[11px] uppercase font-bold text-slate-400 mb-2.5 flex items-center">
-            <Zap className="w-3.5 h-3.5 text-amber-400 mr-1.5" />
-            Quick Demo Accounts:
+        <div className="mt-6 pt-5 border-t border-slate-200/80 dark:border-slate-800">
+          <p className="text-[11px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2.5 flex items-center">
+            <Zap className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400 mr-1.5" />
+            <span>Instant Demo Accounts:</span>
           </p>
           <div className="grid grid-cols-2 gap-2.5">
             {availableProfiles?.slice(0, 2).map((p) => (
@@ -417,18 +435,20 @@ export const AuthPage = ({ initialTab = 'login' }) => {
                   loginAsProfile(p);
                   navigate('/');
                 }}
-                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-left transition-colors"
+                className="p-3 rounded-2xl bg-slate-50/90 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/90 dark:border-slate-700/80 hover:border-indigo-500/40 text-left transition-all shadow-sm hover:shadow-md group"
               >
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-100 truncate">
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 truncate">
                   {p.displayName}
                 </p>
-                <p className="text-[11px] text-indigo-400 truncate">{p.targetRole}</p>
+                <p className="text-[11px] text-slate-500 dark:text-indigo-400 truncate mt-0.5">{p.targetRole}</p>
               </button>
             ))}
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
   );
 };
 
