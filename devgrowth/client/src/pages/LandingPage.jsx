@@ -4,6 +4,8 @@ import { useAuth } from '../hooks/useAuth';
 import { ThemeContext } from '../context/ThemeContext';
 import BackgroundMesh from '../components/common/BackgroundMesh';
 import LandingLoadingModal from '../components/landing/LandingLoadingModal';
+import LandingContactModal from '../components/landing/LandingContactModal';
+import LandingContactSection from '../components/landing/LandingContactSection';
 import {
   Sparkles,
   ArrowRight,
@@ -37,6 +39,7 @@ export const LandingPage = () => {
   const { currentUser } = useAuth();
   const { theme, toggleTheme } = useContext(ThemeContext) || { theme: 'dark', toggleTheme: () => {} };
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [targetAuthPage, setTargetAuthPage] = useState('login');
   const [activePreviewTab, setActivePreviewTab] = useState('dashboard');
   const [calcLevel, setCalcLevel] = useState('L4 Associate');
@@ -62,6 +65,12 @@ export const LandingPage = () => {
         isOpen={isTransitioning}
         targetPage={targetAuthPage}
         onComplete={handleLoadingComplete}
+      />
+
+      {/* Interactive Contact & Support Modal */}
+      <LandingContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
       />
 
       {/* Top Navigation */}
@@ -112,10 +121,12 @@ export const LandingPage = () => {
               Privacy
             </button>
             <button
-              onClick={() => navigate('/contact')}
-              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-bold text-indigo-500"
+              onClick={() => setIsContactModalOpen(true)}
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-bold text-indigo-500 flex items-center space-x-1"
+              title="Open Contact Support"
             >
-              Contact
+              <span>Contact</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
             </button>
           </nav>
 
@@ -659,6 +670,9 @@ export const LandingPage = () => {
         </div>
       </section>
 
+      {/* EMBEDDED CONTACT & SUPPORT SECTION */}
+      <LandingContactSection onOpenModal={() => setIsContactModalOpen(true)} />
+
       {/* FINAL HIGH-IMPACT CALL TO ACTION (MATCHING USER REFERENCE DESIGN) */}
       <section id="cta-journey" className="py-24 sm:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
         {/* Ambient Pastel Background Glow Layers */}
@@ -795,7 +809,7 @@ export const LandingPage = () => {
             Privacy Policy
           </button>
           <button
-            onClick={() => navigate('/contact')}
+            onClick={() => setIsContactModalOpen(true)}
             className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-bold text-indigo-500"
           >
             Contact & Support
