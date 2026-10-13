@@ -193,7 +193,60 @@ export const AuthPage = ({ initialTab = 'login' }) => {
 
         {/* Error Alert & Intelligent Firebase Helper */}
         {error && (
-          error.includes('Firebase Authentication has not been activated') || error.includes('CONFIGURATION_NOT_FOUND') ? (
+          error.includes('API_KEY_HTTP_REFERRER_BLOCKED') || error.includes('Requests from referer') || error.includes('codeorbit-70b7c.firebaseapp.com') ? (
+            <div className="mb-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm animate-in fade-in space-y-3">
+              <div className="flex items-start space-x-2.5">
+                <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-amber-400" />
+                <div>
+                  <p className="font-bold text-amber-200">Google Cloud API Key HTTP Referrer Blocked (403)</p>
+                  <p className="text-xs text-amber-300/90 mt-1 leading-relaxed">
+                    Google Cloud blocked requests from <code className="px-1.5 py-0.5 rounded bg-black/40 text-amber-200 font-mono">https://codeorbit-70b7c.firebaseapp.com/</code> because your Firebase API key in Google Cloud Console has strict HTTP referrer restrictions.
+                  </p>
+                  <div className="mt-2 text-xs text-amber-300/80 space-y-1">
+                    <p className="font-semibold text-amber-200">How to solve in Google Cloud Console:</p>
+                    <ol className="list-decimal list-inside space-y-0.5 pl-1">
+                      <li>Go to <strong>Google Cloud Console &gt; APIs &amp; Services &gt; Credentials</strong> for project <code className="font-mono text-amber-200">codeorbit-70b7c</code></li>
+                      <li>Edit your API Key (starting with <code className="font-mono text-amber-200">AIzaSyDK...</code>)</li>
+                      <li>Under <strong>Application restrictions</strong>, choose <strong className="text-amber-200">"None"</strong> (recommended by Firebase for client keys), OR add <code className="font-mono text-amber-200">https://codeorbit-70b7c.firebaseapp.com/*</code> to allowed referrers</li>
+                      <li>Click <strong>Save</strong></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-amber-500/20">
+                <a
+                  href="https://console.cloud.google.com/apis/credentials?project=codeorbit-70b7c"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 text-xs font-bold transition-colors"
+                >
+                  <span>Open Google Cloud Credentials</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href="https://console.firebase.google.com/project/codeorbit-70b7c/authentication/settings"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 text-xs font-bold transition-colors"
+                >
+                  <span>Firebase Authorized Domains</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    loginAsGoogleDemo();
+                    navigate('/');
+                  }}
+                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Instant Demo Sign-In (Unblock Now)</span>
+                </button>
+              </div>
+            </div>
+          ) : error.includes('Firebase Authentication has not been activated') || error.includes('CONFIGURATION_NOT_FOUND') ? (
             <div className="mb-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm animate-in fade-in space-y-3">
               <div className="flex items-start space-x-2.5">
                 <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-amber-400" />

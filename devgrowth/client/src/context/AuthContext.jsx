@@ -179,7 +179,17 @@ export const AuthProvider = ({ children }) => {
 
   // Helper to format Firebase errors cleanly
   const formatFirebaseError = (error) => {
-    const errorStr = `${error?.code || ''} ${error?.message || ''} ${JSON.stringify(error || '')}`;
+    const errorStr = `${error?.code || ''} ${error?.message || ''} ${JSON.stringify(error?.customData || '')} ${JSON.stringify(error || '')}`;
+
+    if (
+      errorStr.includes('API_KEY_HTTP_REFERRER_BLOCKED') ||
+      errorStr.includes('Requests from referer') ||
+      errorStr.includes('firebaseapp.com/ are blocked') ||
+      (error?.code === 'auth/internal-error' && errorStr.includes('blocked'))
+    ) {
+      return 'API_KEY_HTTP_REFERRER_BLOCKED: Requests from referer https://codeorbit-70b7c.firebaseapp.com/ are blocked by Google Cloud API key restrictions. In Google Cloud Console -> APIs & Services -> Credentials, set your API key restrictions to "None" or add "https://codeorbit-70b7c.firebaseapp.com/*".';
+    }
+
     if (
       error?.code === 'auth/configuration-not-found' ||
       errorStr.includes('CONFIGURATION_NOT_FOUND')
@@ -190,7 +200,7 @@ export const AuthProvider = ({ children }) => {
       return 'This sign-in method is not enabled in Firebase Console. Go to Firebase Console -> Authentication -> Sign-in method and turn on Email/Password or Google.';
     }
     if (error?.code === 'auth/unauthorized-domain') {
-      return 'This domain is not authorized in your Firebase Console. Go to Firebase Console -> Authentication -> Settings -> Authorized Domains and ensure "localhost" is listed.';
+      return 'This domain is not authorized in your Firebase Console. Go to Firebase Console -> Authentication -> Settings -> Authorized Domains and ensure your domains (localhost and client-ten-smoky-86.vercel.app) are listed.';
     }
     switch (error?.code) {
       case 'auth/user-not-found':
@@ -207,6 +217,8 @@ export const AuthProvider = ({ children }) => {
         return 'Google Sign-In popup was closed before completing.';
       case 'auth/popup-blocked':
         return 'Popup blocked by browser. Please allow popups for this site.';
+      case 'auth/internal-error':
+        return 'API_KEY_HTTP_REFERRER_BLOCKED: Google blocked requests from https://codeorbit-70b7c.firebaseapp.com/. Please verify your Google Cloud API key restrictions or use Instant Demo Login.';
       default:
         return error?.message || 'An error occurred during authentication.';
     }
