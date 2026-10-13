@@ -13,7 +13,8 @@ import {
   AlertCircle,
   Zap,
   Briefcase,
-  ExternalLink
+  ExternalLink,
+  ArrowLeft
 } from 'lucide-react';
 
 export const AuthPage = ({ initialTab = 'login' }) => {
@@ -123,7 +124,20 @@ export const AuthPage = ({ initialTab = 'login' }) => {
         {/* Ambient glow */}
         <div className="absolute -right-16 -top-16 w-56 h-56 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="mb-7 text-center">
+        <div className="mb-6 text-center">
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={() => navigate('/landing')}
+              className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-indigo-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Landing Page</span>
+            </button>
+            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+              Secure Gateway
+            </span>
+          </div>
+
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center mx-auto mb-3 shadow-lg shadow-indigo-500/25">
             <Sparkles className="w-6 h-6" />
           </div>

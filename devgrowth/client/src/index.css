@@ -63,6 +63,61 @@ html.dark body {
   .glow-pill {
     @apply relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-indigo-500/10 before:to-purple-500/10 before:rounded-full;
   }
+
+  /* Orbital and float keyframes */
+  .animate-spin-slow {
+    animation: spinSlow 12s linear infinite;
+  }
+
+  .animate-spin-reverse {
+    animation: spinReverse 8s linear infinite;
+  }
+
+  .animate-float {
+    animation: floatSlow 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
 }
 
 /* Custom modern scrollbar */

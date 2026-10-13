@@ -10,6 +10,19 @@ export const PageWrapper = ({ children }) => {
   const { currentUser } = useAuth();
   const location = useLocation();
   const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+  const isLandingRoute = location.pathname === '/landing' || (location.pathname === '/' && !currentUser);
+
+  if (isLandingRoute) {
+    return (
+      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 transition-colors duration-200">
+        <main className="flex-1 w-full">
+          {children}
+        </main>
+        <AuthModal />
+        <GoogleAuthenticatorModal />
+      </div>
+    );
+  }
 
   if (isAuthRoute) {
     return (

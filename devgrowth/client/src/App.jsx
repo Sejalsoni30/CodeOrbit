@@ -10,8 +10,9 @@ import Roadmap from './pages/Roadmap';
 import Portfolio from './pages/Portfolio';
 import AIAssistant from './pages/AIAssistant';
 import AuthPage from './pages/AuthPage';
+import LandingPage from './pages/LandingPage';
 
-// Enforces that users must login/register before accessing the website
+// Enforces that users must login/register before accessing protected app pages
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useAuth();
   if (!currentUser) {
@@ -29,16 +30,31 @@ const PublicAuthRoute = ({ initialTab }) => {
   return <AuthPage initialTab={initialTab} />;
 };
 
+// Root route: Shows beautiful Landing Page before login, and Dashboard once authenticated
+const RootRoute = () => {
+  const { currentUser } = useAuth();
+  if (currentUser) {
+    return <Dashboard />;
+  }
+  return <LandingPage />;
+};
+
 function App() {
   return (
     <PageWrapper>
       <Routes>
-        {/* Auth routes shown first to unauthenticated visitors */}
+        {/* Landing page explicitly accessible anytime */}
+        <Route path="/landing" element={<LandingPage />} />
+
+        {/* Auth routes */}
         <Route path="/login" element={<PublicAuthRoute initialTab="login" />} />
         <Route path="/register" element={<PublicAuthRoute initialTab="register" />} />
 
+        {/* Root: Landing Page before login, Dashboard after login */}
+        <Route path="/" element={<RootRoute />} />
+
         {/* Protected app routes accessible only after login */}
-        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/skills" element={<ProtectedRoute><SkillTracker /></ProtectedRoute>} />
         <Route path="/goals" element={<ProtectedRoute><DailyGoals /></ProtectedRoute>} />
         <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
