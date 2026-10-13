@@ -1,135 +1,65 @@
 # DevGrowth 🚀
 
-A Developer Growth & Career Intelligence Platform built with **React, Vite, Tailwind CSS, Node.js, Express, MongoDB, Firebase Auth, and Google Gemini AI**.
+> **Engineering Career Intelligence Platform**  
+> Full-Stack Application powered by **React 18, Vite, Tailwind CSS, Node.js Express, Firebase Firestore, and Google Gemini AI**.
 
 ---
 
-## 📁 Project Structure
+## 📁 Architecture Overview
 
 ```text
 devgrowth/
-├── client/                              # Frontend (React + Vite + Tailwind CSS)
-│   ├── public/                          # Favicon, static assets, index.html
+├── client/                              # Frontend (React 18 + Vite + Tailwind CSS)
+│   ├── public/                          # Favicon & static public assets
 │   ├── src/
-│   │   ├── assets/                      # Images, SVG icons, logo files
-│   │   ├── components/                  # Reusable UI components
-│   │   │   ├── common/                  # Buttons, Badges, Modals, Inputs
+│   │   ├── components/
+│   │   │   ├── common/                  # Reusable UI elements (UserAvatar, Buttons, Modals)
 │   │   │   ├── layout/                  # Navbar, Sidebar, Footer, PageWrapper
-│   │   │   └── dashboard/               # StatCard, Heatmap, ActivityWidget
-│   │   ├── context/                     # React Context API providers
-│   │   │   ├── AuthContext.jsx          # Firebase auth state & session listener
-│   │   │   └── ThemeContext.jsx         # Light/dark or platform theme state
-│   │   ├── hooks/                       # Custom React hooks
-│   │   │   ├── useAuth.js               # Consume AuthContext easily
-│   │   │   └── useFetch.js              # Reusable API fetching hook
-│   │   ├── pages/                       # Route views
-│   │   │   ├── Dashboard.jsx            # Main metrics & overview
-│   │   │   ├── SkillTracker.jsx         # Proficiency bars & categories
-│   │   │   ├── DailyGoals.jsx           # Daily tasks checklist & streak counter
-│   │   │   ├── Analytics.jsx            # Recharts graphs & progress insights
-│   │   │   ├── Roadmap.jsx              # Career goal milestones
-│   │   │   ├── Portfolio.jsx            # Project cards & GitHub links
-│   │   │   └── AIAssistant.jsx          # Gemini AI career advice interface
-│   │   ├── services/                    # API communication layer
-│   │   │   ├── api.js                   # Axios instance with interceptors
-│   │   │   ├── authService.js           # Auth endpoints
-│   │   │   ├── skillService.js          # Skill tracker endpoints
-│   │   │   ├── goalService.js           # Daily goals endpoints
-│   │   │   ├── projectService.js        # Portfolio project endpoints
-│   │   │   └── aiService.js             # Gemini AI query endpoints
-│   │   ├── utils/                       # Helper functions & formatters
-│   │   │   ├── dateHelper.js            # Streak & date formatting utils
-│   │   │   └── validators.js            # Form validation helpers
-│   │   ├── App.jsx                      # Main router & protected layout wrappers
-│   │   ├── index.css                    # Tailwind directives & custom styles
-│   │   └── main.jsx                     # React root mount
-│   ├── .env                             # Frontend environment variables (Firebase config)
-│   ├── tailwind.config.js               # Tailwind configuration & theme extension
-│   ├── postcss.config.js                # PostCSS configuration
-│   └── package.json                     # Frontend dependencies & scripts
+│   │   │   ├── dashboard/               # StatCard, Heatmap, ActivityWidget
+│   │   │   ├── profile/                 # ProfileModal for title, tier, & avatar management
+│   │   │   └── auth/                    # AuthModal & GoogleAuthenticatorModal (2FA)
+│   │   ├── context/                     # AuthContext (Firebase + Demo) & ThemeContext
+│   │   ├── hooks/                       # Custom React hooks (useAuth, useFetch)
+│   │   ├── pages/                       # Dashboard, SkillTracker, DailyGoals, Analytics, Roadmap, Portfolio, AIAssistant, AuthPage
+│   │   ├── services/                    # API communication layer (Axios interceptors)
+│   │   ├── config/                      # Firebase client configuration
+│   │   └── index.css                    # Tailwind CSS directives & glassmorphism utilities
+│   ├── vercel.json                      # Single Page Application rewrite rules for Vercel
+│   ├── .env.example                     # Sanitized environment template
+│   └── package.json
 │
-├── server/                              # Backend (Node.js + Express + MongoDB)
-│   ├── src/
-│   │   ├── config/                      # Database & third-party initializers
-│   │   │   ├── db.js                    # Mongoose MongoDB connection
-│   │   │   └── firebaseAdmin.js         # Firebase Admin SDK setup
-│   │   ├── controllers/                 # Request handlers & core business logic
-│   │   │   ├── authController.js        # User sync & session management
-│   │   │   ├── userController.js        # Profile & target role controllers
-│   │   │   ├── skillController.js       # CRUD for developer skills
-│   │   │   ├── goalController.js        # Daily learning goals management
-│   │   │   ├── projectController.js     # Portfolio project tracking
-│   │   │   └── aiController.js          # Gemini API career advice integration
-│   │   ├── middleware/                  # Express middleware functions
-│   │   │   ├── authMiddleware.js        # Firebase token verification
-│   │   │   ├── errorMiddleware.js       # Global error handling & formatting
-│   │   │   └── validationMiddleware.js  # Request body validation rules
-│   │   ├── models/                      # Mongoose Schemas
-│   │   │   ├── User.js                  # User schema
-│   │   │   ├── Skill.js                 # Skill proficiency schema
-│   │   │   ├── Goal.js                  # Daily learning goal schema
-│   │   │   └── Project.js               # Project portfolio schema
-│   │   ├── routes/                      # API endpoint routers
-│   │   │   ├── authRoutes.js            # /api/auth routes
-│   │   │   ├── userRoutes.js            # /api/users routes
-│   │   │   ├── skillRoutes.js           # /api/skills routes
-│   │   │   ├── goalRoutes.js            # /api/goals routes
-│   │   │   ├── projectRoutes.js         # /api/projects routes
-│   │   │   └── aiRoutes.js              # /api/ai routes
-│   │   ├── utils/                       # Backend utility scripts
-│   │   │   └── logger.js                # Morgan / Winston logging config
-│   │   └── server.js                    # Express application entry point
-│   ├── .env                             # Backend environment variables (MONGO_URI, GEMINI_API_KEY)
-│   └── package.json                     # Backend dependencies & scripts
-│
-└── README.md                            # Project documentation & setup guide
+└── server/                              # Backend (Node.js + Express + Firebase Firestore)
+    ├── src/
+    │   ├── config/                      # Firestore database engine & Admin SDK initialization
+    │   ├── controllers/                 # Business logic for Auth, Users, Skills, Goals, Projects, and Gemini AI
+    │   ├── middleware/                  # Auth token verification & error middleware
+    │   ├── routes/                      # REST API routing (/api/*)
+    │   └── server.js                    # Express application entry point
+    ├── .env.example                     # Sanitized environment template
+    └── package.json
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Technology Stack
 
-### Frontend
-- **Framework**: React 18 + Vite
-- **Styling**: Tailwind CSS
-- **Routing**: React Router DOM
-- **HTTP Client**: Axios with interceptors
-- **Authentication**: Firebase Authentication
-- **Visuals & Charts**: Recharts & Lucide React Icons
-
-### Backend
-- **Runtime**: Node.js & Express
-- **Database**: MongoDB with Mongoose ODM
-- **Auth Verification**: Firebase Admin SDK
-- **AI Integration**: Google Gemini API
-- **Logging**: Morgan HTTP logger
+| Layer | Technologies |
+|---|---|
+| **Frontend** | React 18, Vite, Tailwind CSS, Lucide React, Recharts |
+| **Backend** | Node.js, Express, Firebase Admin SDK |
+| **Database** | Google Cloud Firestore (Document Collections) |
+| **Authentication** | Firebase Authentication (Email/Password, Google OAuth, 2FA TOTP) |
+| **AI Integration** | Google Gemini 2.5 AI SDK |
+| **Deployment** | Vercel (Client SPA) & Render (Express Web Service) |
 
 ---
 
-## ⚙️ Setup & Installation
+## 🔒 Security Policy
 
-### 1. Clone & Navigate
-```bash
-cd devgrowth
-```
-
-### 2. Backend Setup
-```bash
-cd server
-npm install
-cp .env.example .env # Update MongoDB, Firebase, and Gemini credentials
-npm run dev
-```
-
-### 3. Frontend Setup
-```bash
-cd ../client
-npm install
-cp .env.example .env # Update Firebase credentials
-npm run dev
-```
+- All sensitive keys (`FIREBASE_API_KEY`, `GEMINI_API_KEY`, `serviceAccountKey.json`, `.env`) are **strictly excluded** from version control via `.gitignore`.
+- Production credentials should be injected securely via platform environment variable dashboards (Vercel & Render).
 
 ---
 
-## 🛡️ License
+## 📄 License
 MIT License.
