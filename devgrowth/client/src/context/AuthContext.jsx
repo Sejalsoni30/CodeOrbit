@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
     } catch {
       // fallback
     }
-    return DEMO_PROFILES[0];
+    return null;
   });
 
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(() => {

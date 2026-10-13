@@ -38,6 +38,15 @@ export const AuthPage = ({ initialTab = 'login' }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  React.useEffect(() => {
+    if (location.pathname === '/register') {
+      setTab('register');
+    } else {
+      setTab('login');
+    }
+    setError('');
+  }, [location.pathname]);
+
   // Login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -131,7 +140,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
         {/* Tab switch */}
         <div className="flex p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 mb-6">
           <button
-            onClick={() => { setTab('login'); setError(''); }}
+            onClick={() => { setTab('login'); setError(''); navigate('/login', { replace: true }); }}
             className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
               tab === 'login'
                 ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-md'
@@ -141,7 +150,7 @@ export const AuthPage = ({ initialTab = 'login' }) => {
             Sign In
           </button>
           <button
-            onClick={() => { setTab('register'); setError(''); }}
+            onClick={() => { setTab('register'); setError(''); navigate('/register', { replace: true }); }}
             className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
               tab === 'register'
                 ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-md'

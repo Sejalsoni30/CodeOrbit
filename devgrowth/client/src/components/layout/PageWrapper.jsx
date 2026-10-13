@@ -1,32 +1,33 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import { useAuth } from '../../hooks/useAuth';
 import { AuthModal, GoogleAuthenticatorModal } from '../auth';
-import { LogIn, UserPlus } from 'lucide-react';
 
 export const PageWrapper = ({ children }) => {
-  const { currentUser, openAuthModal } = useAuth();
+  const { currentUser } = useAuth();
+  const location = useLocation();
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+
+  if (isAuthRoute) {
+    return (
+      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 transition-colors duration-200">
+        <Navbar />
+        <main className="flex-1 flex items-center justify-center p-4 sm:p-6 w-full">
+          {children}
+        </main>
+        <Footer />
+        <AuthModal />
+        <GoogleAuthenticatorModal />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       <Navbar />
-
-      {!currentUser && (
-        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white px-4 py-2 text-xs font-medium flex items-center justify-between shadow-sm">
-          <div className="flex items-center space-x-2 mx-auto">
-            <span>You are currently in Guest view mode.</span>
-            <button
-              onClick={() => openAuthModal('login')}
-              className="underline font-bold hover:text-indigo-100 flex items-center space-x-1"
-            >
-              <LogIn className="w-3.5 h-3.5 inline mr-1" />
-              <span>Sign In with Email / Google / Authenticator to sync your profile</span>
-            </button>
-          </div>
-        </div>
-      )}
 
       <div className="flex flex-1">
         <Sidebar />
@@ -44,4 +45,3 @@ export const PageWrapper = ({ children }) => {
 };
 
 export default PageWrapper;
-
