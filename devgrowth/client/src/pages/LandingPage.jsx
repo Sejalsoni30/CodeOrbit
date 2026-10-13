@@ -83,7 +83,7 @@ export const LandingPage = () => {
           </div>
 
           {/* Center Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-8 text-xs font-semibold text-slate-600 dark:text-slate-300">
+          <nav className="hidden md:flex items-center space-x-6 text-xs font-semibold text-slate-600 dark:text-slate-300">
             <a href="#purpose" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
               Purpose
             </a>
@@ -101,9 +101,21 @@ export const LandingPage = () => {
             </a>
             <button
               onClick={() => navigate('/terms')}
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium"
+            >
+              Terms
+            </button>
+            <button
+              onClick={() => navigate('/privacy')}
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-emerald-500"
+            >
+              Privacy
+            </button>
+            <button
+              onClick={() => navigate('/contact')}
               className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-bold text-indigo-500"
             >
-              Terms & Legal
+              Contact
             </button>
           </nav>
 
@@ -777,10 +789,16 @@ export const LandingPage = () => {
             Terms & Conditions
           </button>
           <button
-            onClick={() => navigate('/terms#data-privacy')}
-            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            onClick={() => navigate('/privacy')}
+            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-emerald-500 font-bold"
           >
             Privacy Policy
+          </button>
+          <button
+            onClick={() => navigate('/contact')}
+            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-bold text-indigo-500"
+          >
+            Contact & Support
           </button>
           <button
             onClick={() => navigate('/terms#security')}

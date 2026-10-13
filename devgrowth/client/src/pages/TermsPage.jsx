@@ -77,6 +77,19 @@ export const TermsPage = () => {
               <span>Print Terms</span>
             </button>
             <button
+              onClick={() => navigate('/privacy')}
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-emerald-200 dark:border-emerald-800/80 bg-emerald-50/80 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-xs font-semibold text-emerald-600 dark:text-emerald-300 transition-all"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+              <span>Privacy Policy</span>
+            </button>
+            <button
+              onClick={() => navigate('/contact')}
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-indigo-200 dark:border-indigo-800/80 bg-indigo-50/80 dark:bg-indigo-950/40 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-xs font-semibold text-indigo-600 dark:text-indigo-300 transition-all"
+            >
+              <span>Contact Us</span>
+            </button>
+            <button
               onClick={() => navigate('/login')}
               className="flex items-center space-x-1.5 px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
             >
@@ -348,6 +361,22 @@ export const TermsPage = () => {
                 <p className="text-slate-500 dark:text-slate-400 text-[11px] pt-1">CodeOrbit Platform v2.4 • Registered Software Engineering Intelligence Suite</p>
               </div>
             </section>
+          </div>
+        </div>
+
+        {/* Footer Navigation */}
+        <div className="mt-16 pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+          <p>© 2026 CodeOrbit (DevGrowth) Platform. All rights reserved.</p>
+          <div className="flex items-center space-x-6 font-semibold">
+            <button onClick={() => navigate('/privacy')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Privacy Policy
+            </button>
+            <button onClick={() => navigate('/contact')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Contact Us
+            </button>
+            <button onClick={() => navigate('/')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              Home
+            </button>
           </div>
         </div>
       </main>
