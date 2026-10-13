@@ -647,35 +647,116 @@ export const LandingPage = () => {
         </div>
       </section>
 
-      {/* FINAL HIGH-IMPACT CALL TO ACTION */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200/80 dark:border-slate-800/80 text-center">
-        <div className="p-10 sm:p-16 rounded-3xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-600 text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+      {/* FINAL HIGH-IMPACT CALL TO ACTION (MATCHING USER REFERENCE DESIGN) */}
+      <section id="cta-journey" className="py-24 sm:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+        {/* Ambient Pastel Background Glow Layers */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden -z-10">
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 rounded-full bg-blue-400/15 dark:bg-blue-500/10 blur-[100px]" />
+          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 rounded-full bg-purple-400/15 dark:bg-purple-500/10 blur-[100px]" />
+          
+          {/* Background Ambient Curved Contour Arcs */}
+          {/* Top-Left Arc */}
+          <svg className="absolute top-4 left-4 sm:top-8 sm:left-12 w-64 h-64 sm:w-96 sm:h-96 text-blue-300/50 dark:text-blue-400/20" viewBox="0 0 200 200" fill="none">
+            <circle cx="10" cy="10" r="160" stroke="currentColor" strokeWidth="2" />
+          </svg>
+          {/* Top-Right Arc */}
+          <svg className="absolute top-4 right-4 sm:top-8 sm:right-12 w-64 h-64 sm:w-96 sm:h-96 text-purple-300/50 dark:text-purple-400/20" viewBox="0 0 200 200" fill="none">
+            <circle cx="190" cy="10" r="160" stroke="currentColor" strokeWidth="2" />
+          </svg>
+          {/* Bottom-Left Soft Wave */}
+          <svg className="absolute -bottom-10 -left-10 w-72 h-72 sm:w-96 sm:h-96 text-sky-300/40 dark:text-sky-400/15" viewBox="0 0 300 300" fill="none">
+            <path d="M-40 260 C 80 250, 160 180, 240 60" stroke="currentColor" strokeWidth="2" />
+          </svg>
+          {/* Bottom-Right Soft Wave */}
+          <svg className="absolute -bottom-10 -right-10 w-72 h-72 sm:w-96 sm:h-96 text-purple-300/40 dark:text-purple-400/15" viewBox="0 0 300 300" fill="none">
+            <path d="M340 260 C 220 250, 140 180, 60 60" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        </div>
 
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white/20 text-white mb-4">
-            Start Your Journey Today
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight max-w-2xl mx-auto">
-            Ready to Supercharge Your Engineering Career?
-          </h2>
-          <p className="text-sm sm:text-base text-indigo-100 max-w-xl mx-auto mt-4 leading-relaxed">
-            Join developers accelerating their velocity with verified skill maps, structured leveling roadmaps, and intelligent AI mentorship.
-          </p>
+        {/* Relative Canvas for Floating Doodles & Card */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Exterior Doodles & Dot Matrices */}
+          {/* Top-Left Radiating Burst Doodle (\ | /) */}
+          <div className="absolute -top-10 left-6 sm:-top-8 sm:left-14 lg:left-8 pointer-events-none select-none text-blue-500 dark:text-blue-400 z-20">
+            <svg className="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round">
+              <line x1="8" y1="36" x2="18" y2="34" />
+              <line x1="12" y1="20" x2="22" y2="26" />
+              <line x1="24" y1="8" x2="26" y2="20" />
+            </svg>
+          </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button
-              onClick={() => handleStartLogin('login')}
-              className="px-8 py-4 rounded-2xl bg-white text-indigo-700 hover:bg-indigo-50 text-sm sm:text-base font-extrabold shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center space-x-2"
-            >
-              <span>Login to CodeOrbit</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => handleStartLogin('register')}
-              className="px-8 py-4 rounded-2xl bg-indigo-700/60 hover:bg-indigo-700 border border-white/25 text-white text-sm sm:text-base font-bold transition-all"
-            >
-              <span>Create Free Account</span>
-            </button>
+          {/* Left Dot Grid Matrix (4x4) */}
+          <div className="hidden sm:grid absolute -left-8 lg:-left-16 top-1/2 -translate-y-1/2 grid-cols-4 gap-2.5 sm:gap-3 pointer-events-none select-none opacity-80 z-20">
+            {[...Array(16)].map((_, i) => (
+              <span key={`dot-l-${i}`} className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
+            ))}
+          </div>
+
+          {/* Right Dot Grid Matrix (4x4) */}
+          <div className="hidden sm:grid absolute -right-8 lg:-right-16 top-6 sm:top-10 grid-cols-4 gap-2.5 sm:gap-3 pointer-events-none select-none opacity-80 z-20">
+            {[...Array(16)].map((_, i) => (
+              <span key={`dot-r-${i}`} className="w-2 h-2 rounded-full bg-purple-500 dark:bg-purple-400" />
+            ))}
+          </div>
+
+          {/* Right Playful Swirl Loop Doodle with Star Sparkle (✦) */}
+          <div className="absolute -bottom-8 right-2 sm:bottom-4 sm:-right-8 lg:-right-16 pointer-events-none select-none flex items-center space-x-1 sm:space-x-2 text-purple-500 dark:text-purple-400 z-20">
+            <svg className="w-16 h-12 sm:w-20 sm:h-16" viewBox="0 0 80 60" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 34 C 18 36, 26 44, 34 32 C 40 22, 48 24, 45 36 C 42 46, 54 48, 64 36" />
+            </svg>
+            <span className="text-2xl sm:text-3xl text-purple-500 dark:text-purple-400 font-serif leading-none -mt-4 animate-pulse">✦</span>
+          </div>
+
+          {/* THE HERO GRADIENT CARD */}
+          <div className="relative mx-auto rounded-[32px] sm:rounded-[44px] bg-gradient-to-r from-[#2879f6] via-[#615dfa] to-[#a855f7] p-8 sm:p-14 md:py-16 text-white shadow-[0_25px_60px_-15px_rgba(79,70,229,0.5)] border border-white/25 overflow-hidden z-10">
+            
+            {/* 4 Frosted Glass Corner Bubbles/Spheres (signature 3D glass effect) */}
+            {/* Top-Left Bubble */}
+            <div className="absolute -top-12 -left-12 sm:-top-16 sm:-left-16 w-36 h-36 sm:w-52 sm:h-52 rounded-full bg-white/20 backdrop-blur-md border border-white/35 shadow-[inset_0_4px_20px_rgba(255,255,255,0.35)] pointer-events-none" />
+            
+            {/* Top-Right Bubble */}
+            <div className="absolute -top-12 -right-12 sm:-top-16 sm:-right-16 w-36 h-36 sm:w-52 sm:h-52 rounded-full bg-white/20 backdrop-blur-md border border-white/35 shadow-[inset_0_4px_20px_rgba(255,255,255,0.35)] pointer-events-none" />
+            
+            {/* Bottom-Left Bubble */}
+            <div className="absolute -bottom-14 -left-12 sm:-bottom-20 sm:-left-16 w-40 h-40 sm:w-56 sm:h-56 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-[inset_0_4px_20px_rgba(255,255,255,0.25)] pointer-events-none" />
+            
+            {/* Bottom-Right Bubble */}
+            <div className="absolute -bottom-14 -right-12 sm:-bottom-20 sm:-right-16 w-40 h-40 sm:w-56 sm:h-56 rounded-full bg-white/15 backdrop-blur-md border border-white/30 shadow-[inset_0_4px_20px_rgba(255,255,255,0.25)] pointer-events-none" />
+
+            {/* Pill Badge */}
+            <div className="inline-flex items-center space-x-2 px-5 py-1.5 rounded-full bg-white/20 hover:bg-white/25 backdrop-blur-md border border-white/40 text-white text-[10px] sm:text-xs font-black tracking-widest uppercase shadow-[0_2px_12px_rgba(255,255,255,0.2)] mb-6 transition-all select-none">
+              <span className="text-white text-xs">✦</span>
+              <span>START YOUR JOURNEY TODAY</span>
+              <span className="text-white text-xs">✦</span>
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.18] max-w-2xl mx-auto drop-shadow-sm">
+              Ready to Supercharge Your <br className="hidden sm:inline" />
+              Engineering Career?
+            </h2>
+
+            {/* Subtitle */}
+            <p className="mt-4 sm:mt-5 text-xs sm:text-sm md:text-base text-white/95 max-w-xl mx-auto leading-relaxed font-normal">
+              Join developers accelerating their velocity with verified skill maps, structured leveling roadmaps, and intelligent AI mentorship.
+            </p>
+
+            {/* Two Action Pill Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <button
+                onClick={() => handleStartLogin('login')}
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white text-[#4f46e5] hover:text-[#4338ca] hover:bg-slate-50 text-xs sm:text-sm font-black shadow-lg shadow-black/10 transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center space-x-2 group"
+              >
+                <span>Login to CodeOrbit</span>
+                <span className="font-bold group-hover:translate-x-1 transition-transform">→</span>
+              </button>
+              <button
+                onClick={() => handleStartLogin('register')}
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 text-white text-xs sm:text-sm font-black shadow-sm transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center"
+              >
+                <span>Create Free Account</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
