@@ -12,6 +12,22 @@ export const PageWrapper = ({ children }) => {
   const location = useLocation();
   const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
   const isLandingRoute = location.pathname === '/landing' || (location.pathname === '/' && !currentUser);
+  const isTermsRoute = location.pathname === '/terms';
+
+  if (isTermsRoute) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative">
+        <BackgroundMesh />
+        <Navbar />
+        <main className="flex-1 w-full relative z-10">
+          {children}
+        </main>
+        <Footer />
+        <AuthModal />
+        <GoogleAuthenticatorModal />
+      </div>
+    );
+  }
 
   if (isLandingRoute) {
     return (

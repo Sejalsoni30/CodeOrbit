@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { ThemeContext } from '../../context/ThemeContext';
 import {
@@ -13,12 +14,18 @@ import {
   Shield,
   Activity,
   User,
-  Settings
+  Settings,
+  Scale,
+  FileText,
+  Menu,
+  X
 } from 'lucide-react';
 import UserAvatar, { formatProfessionalRole } from '../common/UserAvatar';
 import ProfileModal from '../profile/ProfileModal';
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     currentUser,
     logout,
@@ -30,15 +37,21 @@ export const Navbar = () => {
   } = useAuth();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [legalMenuOpen, setLegalMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const legalMenuRef = useRef(null);
 
-  // Close dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setDropdownOpen(false);
+      }
+      if (legalMenuRef.current && !legalMenuRef.current.contains(e.target)) {
+        setLegalMenuOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -54,9 +67,12 @@ export const Navbar = () => {
   return (
     <>
       <header className="h-16 glass-header px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40 transition-colors">
-        {/* Brand identity */}
-        <div className="flex items-center space-x-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 ring-1 ring-white/20">
+        {/* Brand identity (Clickable to home/dashboard) */}
+        <div
+          onClick={() => navigate(currentUser ? '/dashboard' : '/')}
+          className="flex items-center space-x-3 cursor-pointer group"
+        >
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 ring-1 ring-white/20 group-hover:scale-105 transition-transform">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div>
@@ -74,10 +90,105 @@ export const Navbar = () => {
           </div>
         </div>
 
+        {/* Professional Center Navigation Links */}
+        <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs font-semibold">
+          <button
+            onClick={() => navigate(currentUser ? '/dashboard' : '/')}
+            className={`px-3 py-1.5 rounded-xl transition-colors ${
+              location.pathname === '/' || location.pathname === '/dashboard'
+                ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold'
+                : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+            }`}
+          >
+            Platform
+          </button>
+          <button
+            onClick={() => navigate('/skills')}
+            className={`px-3 py-1.5 rounded-xl transition-colors ${
+              location.pathname === '/skills'
+                ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold'
+                : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+            }`}
+          >
+            Skills
+          </button>
+          <button
+            onClick={() => navigate('/roadmap')}
+            className={`px-3 py-1.5 rounded-xl transition-colors ${
+              location.pathname === '/roadmap'
+                ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold'
+                : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+            }`}
+          >
+            Roadmap
+          </button>
+          <button
+            onClick={() => navigate('/ai-assistant')}
+            className={`px-3 py-1.5 rounded-xl transition-colors ${
+              location.pathname === '/ai-assistant'
+                ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold'
+                : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+            }`}
+          >
+            AI Mentor
+          </button>
+
+          {/* Legal & Terms Dropdown */}
+          <div className="relative" ref={legalMenuRef}>
+            <button
+              onClick={() => setLegalMenuOpen(!legalMenuOpen)}
+              className={`flex items-center space-x-1 px-3 py-1.5 rounded-xl transition-colors ${
+                location.pathname === '/terms'
+                  ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-500/20'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+              }`}
+            >
+              <Scale className="w-3.5 h-3.5 text-indigo-500" />
+              <span>Legal & Terms</span>
+              <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${legalMenuOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {legalMenuOpen && (
+              <div className="absolute left-0 mt-2 w-60 rounded-2xl glass-card border border-slate-200/90 dark:border-slate-800 shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <button
+                  onClick={() => { setLegalMenuOpen(false); navigate('/terms'); }}
+                  className="w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-left"
+                >
+                  <Scale className="w-4 h-4 text-indigo-500 shrink-0" />
+                  <div>
+                    <p className="font-bold text-slate-900 dark:text-white">Terms & Conditions</p>
+                    <p className="text-[10px] text-slate-400 font-normal">Official Developer Agreement</p>
+                  </div>
+                </button>
+                <button
+                  onClick={() => { setLegalMenuOpen(false); navigate('/terms'); }}
+                  className="w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-left"
+                >
+                  <FileText className="w-4 h-4 text-purple-500 shrink-0" />
+                  <div>
+                    <p className="font-bold text-slate-900 dark:text-white">Privacy Policy</p>
+                    <p className="text-[10px] text-slate-400 font-normal">GDPR & Firestore Safeguards</p>
+                  </div>
+                </button>
+                <button
+                  onClick={() => { setLegalMenuOpen(false); navigate('/terms'); }}
+                  className="w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-left"
+                >
+                  <Shield className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <div>
+                    <p className="font-bold text-slate-900 dark:text-white">Security & 2FA</p>
+                    <p className="text-[10px] text-slate-400 font-normal">TOTP Google Authenticator</p>
+                  </div>
+                </button>
+              </div>
+            )}
+          </div>
+        </nav>
+
         {/* Right actions: Theme toggle + Auth & Logout */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        <div className="flex items-center space-x-2.5 sm:space-x-3">
           {/* Live system status pill */}
-          <div className="hidden lg:flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium">
+          <div className="hidden xl:flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span>API Online</span>
           </div>
@@ -265,8 +376,65 @@ export const Navbar = () => {
               </button>
             </div>
           )}
+
+          {/* Mobile Menu Hamburger Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-xl border border-slate-200/90 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors"
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
         </div>
       </header>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden glass-header border-b border-slate-200/80 dark:border-slate-800/80 px-4 py-4 space-y-1.5 sticky top-16 z-30 animate-in fade-in slide-in-from-top-2 duration-150">
+          <button
+            onClick={() => { setMobileMenuOpen(false); navigate(currentUser ? '/dashboard' : '/'); }}
+            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            Platform Home
+          </button>
+          <button
+            onClick={() => { setMobileMenuOpen(false); navigate('/skills'); }}
+            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            Skills Matrix
+          </button>
+          <button
+            onClick={() => { setMobileMenuOpen(false); navigate('/roadmap'); }}
+            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            Career Roadmap
+          </button>
+          <button
+            onClick={() => { setMobileMenuOpen(false); navigate('/ai-assistant'); }}
+            className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            Gemini AI Mentor
+          </button>
+
+          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 mt-2">
+            <p className="text-[10px] uppercase font-bold text-slate-400 px-3 mb-1">Legal & Compliance</p>
+            <button
+              onClick={() => { setMobileMenuOpen(false); navigate('/terms'); }}
+              className="w-full flex items-center space-x-2 text-left px-3 py-2 rounded-xl text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10 transition-colors"
+            >
+              <Scale className="w-3.5 h-3.5" />
+              <span>Terms & Conditions</span>
+            </button>
+            <button
+              onClick={() => { setMobileMenuOpen(false); navigate('/terms#data-privacy'); }}
+              className="w-full flex items-center space-x-2 text-left px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Privacy Policy</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Logout Confirmation Modal */}
       {showLogoutConfirm && (

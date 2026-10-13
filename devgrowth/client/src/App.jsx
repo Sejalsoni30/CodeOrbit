@@ -11,6 +11,7 @@ import Portfolio from './pages/Portfolio';
 import AIAssistant from './pages/AIAssistant';
 import AuthPage from './pages/AuthPage';
 import LandingPage from './pages/LandingPage';
+import TermsPage from './pages/TermsPage';
 
 // Enforces that users must login/register before accessing protected app pages
 const ProtectedRoute = ({ children }) => {
@@ -43,8 +44,9 @@ function App() {
   return (
     <PageWrapper>
       <Routes>
-        {/* Landing page explicitly accessible anytime */}
+        {/* Landing & Terms pages explicitly accessible anytime */}
         <Route path="/landing" element={<LandingPage />} />
+        <Route path="/terms" element={<TermsPage />} />
 
         {/* Auth routes */}
         <Route path="/login" element={<PublicAuthRoute initialTab="login" />} />

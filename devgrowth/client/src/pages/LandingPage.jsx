@@ -99,6 +99,12 @@ export const LandingPage = () => {
             <a href="#testimonials" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
               Testimonials
             </a>
+            <button
+              onClick={() => navigate('/terms')}
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-bold text-indigo-500"
+            >
+              Terms & Legal
+            </button>
           </nav>
 
           {/* Right Action Buttons */}
@@ -675,12 +681,34 @@ export const LandingPage = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-slate-200/80 dark:border-slate-800/80 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <footer className="border-t border-slate-200/80 dark:border-slate-800/80 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500 dark:text-slate-400">
         <div className="flex items-center space-x-2">
           <Sparkles className="w-4 h-4 text-indigo-400" />
           <span className="font-extrabold text-slate-800 dark:text-slate-200">CodeOrbit (DevGrowth)</span>
           <span>• Powered by Firebase Firestore & Google Gemini</span>
         </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 font-semibold">
+          <button
+            onClick={() => navigate('/terms')}
+            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >
+            Terms & Conditions
+          </button>
+          <button
+            onClick={() => navigate('/terms#data-privacy')}
+            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >
+            Privacy Policy
+          </button>
+          <button
+            onClick={() => navigate('/terms#security')}
+            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >
+            Security & SLA
+          </button>
+        </div>
+
         <p>© 2026 CodeOrbit Platform. All rights reserved.</p>
       </footer>
     </div>
