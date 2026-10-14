@@ -6,6 +6,7 @@ import BackgroundMesh from '../components/common/BackgroundMesh';
 import LandingLoadingModal from '../components/landing/LandingLoadingModal';
 import LandingContactModal from '../components/landing/LandingContactModal';
 import LandingContactSection from '../components/landing/LandingContactSection';
+import HeroShowcaseCards from '../components/landing/HeroShowcaseCards';
 import {
   Sparkles,
   ArrowRight,
@@ -176,45 +177,60 @@ export const LandingPage = () => {
       </header>
 
       {/* HERO SECTION */}
-      <section className="relative pt-16 pb-20 sm:pt-24 sm:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-        {/* Release Pill Badge */}
-        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 text-indigo-400 mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
-          <Sparkles className="w-4 h-4 text-indigo-400 animate-pulse" />
-          <span>The Career Velocity Intelligence Suite for Software Engineers</span>
-        </div>
+      {/* HERO SECTION */}
+      <section className="relative pt-8 pb-14 sm:pt-14 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 overflow-visible">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          
+          {/* Left Column: Hero Content & CTAs */}
+          <div className="lg:col-span-5 text-left animate-in fade-in slide-in-from-left-4 duration-500">
+            {/* Release Pill Badge */}
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 text-indigo-500 dark:text-indigo-400 mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 animate-pulse" />
+              <span>The Career Velocity Intelligence Suite for Software Engineers</span>
+            </div>
 
-        {/* Hero Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tight max-w-5xl mx-auto leading-[1.08]">
-          Master Technical Velocity. <br className="hidden sm:block" />
-          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Architect Your Engineering Legacy.
-          </span>
-        </h1>
+            {/* Hero Title */}
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] font-black text-slate-900 dark:text-white tracking-tight leading-[1.08]">
+              Master Technical <br />
+              <span className="text-indigo-600 dark:text-indigo-400">Velocity.</span> <br />
+              Architect Your <br />
+              <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-400 bg-clip-text text-transparent">
+                Engineering Legacy.
+              </span>
+            </h1>
 
-        {/* Hero Subtitle */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-          Bridge the gap between coding daily and advancing your engineering tier. Track technical skills across 6 core domains, orchestrate sprint goals, and receive AI architectural critique with enterprise-grade Firestore precision.
-        </p>
+            {/* Hero Subtitle */}
+            <p className="mt-6 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-lg leading-relaxed font-normal">
+              Bridge the gap between coding daily and advancing your engineering tier. Track technical skills across 6 core domains, orchestrate sprint goals, and receive AI architectural critique with enterprise-grade Firestore precision.
+            </p>
 
-        {/* Primary CTA Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <button
-            onClick={() => handleStartLogin('login')}
-            className="w-full sm:w-auto flex items-center justify-center space-x-3 px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm sm:text-base font-bold shadow-xl shadow-indigo-600/35 transition-all hover:scale-105 active:scale-95 group"
-          >
-            <span>Enter Platform / Login</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-          <a
-            href="#preview"
-            className="w-full sm:w-auto flex items-center justify-center space-x-2 px-7 py-4 rounded-2xl glass-card hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm sm:text-base font-bold border border-slate-200 dark:border-slate-700 transition-all"
-          >
-            <span>Explore Platform Demo</span>
-          </a>
+            {/* Primary CTA Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+              <button
+                onClick={() => handleStartLogin('login')}
+                className="w-full sm:w-auto flex items-center justify-center space-x-2.5 px-8 py-3.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 group"
+              >
+                <span>Enter Platform /</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <a
+                href="#preview"
+                className="w-full sm:w-auto flex items-center justify-center space-x-2 px-8 py-3.5 rounded-full bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-bold border border-slate-200/90 dark:border-slate-700 shadow-sm transition-all hover:scale-105 active:scale-95"
+              >
+                <span>Explore Platform</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: 3D Angled Showcase Cards Pattern */}
+          <div className="lg:col-span-7 flex justify-center lg:justify-end animate-in fade-in slide-in-from-right-4 duration-700">
+            <HeroShowcaseCards />
+          </div>
+
         </div>
 
         {/* Live Trust Badges */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500 dark:text-slate-400">
+        <div className="mt-14 pt-8 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500 dark:text-slate-400">
           <div className="flex items-center space-x-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>Firebase Cloud Firestore</span>
