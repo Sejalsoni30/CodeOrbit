@@ -150,31 +150,31 @@ export const AIAssistant = () => {
   };
 
   return (
-    <div className="space-y-4 max-w-4xl mx-auto h-[calc(100vh-140px)] flex flex-col animate-in fade-in duration-200">
+    <div className="space-y-3 sm:space-y-4 max-w-4xl mx-auto h-[calc(100dvh-13rem)] sm:h-[calc(100vh-140px)] min-h-[420px] flex flex-col animate-in fade-in duration-200">
       {/* Header */}
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-800/80">
-        <div className="flex items-center space-x-2.5">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/25">
+      <div className="flex items-center justify-between pb-2 border-b border-slate-200/80 dark:border-slate-800/80 gap-2">
+        <div className="flex items-center space-x-2 sm:space-x-2.5 min-w-0 flex-1">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/25 shrink-0">
             <Bot className="w-4 h-4" />
           </div>
-          <div>
+          <div className="min-w-0 flex-1">
             <div className="flex items-center space-x-2">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-                Gemini Engineering Advisor
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white truncate">
+                Gemini Advisor
               </h2>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20">
+              <span className="text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20 shrink-0">
                 AI Ready
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">
-              Personalized career strategy, system design mock interviews, and code feedback
+            <p className="text-[10px] sm:text-[11px] text-slate-400 truncate">
+              Career strategy, system design mock interviews, & code review
             </p>
           </div>
         </div>
 
         <button
           onClick={clearChat}
-          className="text-xs text-slate-400 hover:text-slate-200 flex items-center space-x-1 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          className="text-xs text-slate-400 hover:text-slate-200 flex items-center space-x-1 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
           title="Clear chat history"
         >
           <Trash2 className="w-3.5 h-3.5" />
@@ -183,7 +183,7 @@ export const AIAssistant = () => {
       </div>
 
       {/* Suggested prompts carousel chips */}
-      <div className="flex items-center space-x-2 overflow-x-auto pb-1 text-xs shrink-0">
+      <div className="flex items-center space-x-2 overflow-x-auto pb-1 text-xs shrink-0 touch-pan-x scrollbar-none">
         <span className="text-[10px] uppercase font-bold text-slate-400 whitespace-nowrap flex items-center">
           <Sparkles className="w-3 h-3 text-indigo-400 mr-1 inline" />
           Suggestions:
@@ -192,7 +192,7 @@ export const AIAssistant = () => {
           <button
             key={idx}
             onClick={() => handleSend(prompt)}
-            className="px-3 py-1 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-[11px] font-semibold whitespace-nowrap border border-indigo-500/20 transition-all hover:scale-105 active:scale-95"
+            className="px-2.5 sm:px-3 py-1 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-[10px] sm:text-[11px] font-semibold whitespace-nowrap border border-indigo-500/20 transition-all hover:scale-105 active:scale-95"
           >
             {prompt}
           </button>
@@ -200,14 +200,14 @@ export const AIAssistant = () => {
       </div>
 
       {/* Chat Messages Log */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-5 glass-card space-y-4">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-5 glass-card space-y-3 sm:space-y-4">
         {messages.map((m, i) => (
           <div
             key={i}
             className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} group`}
           >
             <div
-              className={`max-w-2xl rounded-2xl p-4 text-xs sm:text-sm leading-relaxed relative ${
+              className={`max-w-[88%] sm:max-w-2xl rounded-2xl p-3 sm:p-4 text-xs sm:text-sm leading-relaxed relative ${
                 m.role === 'user'
                   ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-md shadow-indigo-600/20'
                   : 'bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 shadow-sm'
@@ -235,7 +235,7 @@ export const AIAssistant = () => {
                 </div>
               </div>
 
-              <div className="whitespace-pre-line font-normal">
+              <div className="whitespace-pre-line font-normal break-words">
                 {m.text}
               </div>
             </div>
@@ -247,7 +247,7 @@ export const AIAssistant = () => {
             <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce" />
             <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.2s]" />
             <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.4s]" />
-            <span className="font-medium">Synthesizing engineering recommendation...</span>
+            <span className="font-medium text-[11px] sm:text-xs">Synthesizing engineering recommendation...</span>
           </div>
         )}
 
@@ -255,17 +255,17 @@ export const AIAssistant = () => {
       </div>
 
       {/* Input bar */}
-      <form onSubmit={(e) => { e.preventDefault(); handleSend(input); }} className="flex gap-2">
+      <form onSubmit={(e) => { e.preventDefault(); handleSend(input); }} className="flex gap-1.5 sm:gap-2">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask for system design guidance, mock interview prompts, or career planning..."
-          className="flex-1 px-4 py-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Ask system design, mock questions, or career strategy..."
+          className="flex-1 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 min-w-0"
         />
         <button
           type="submit"
           disabled={!input.trim() || loading}
-          className="px-5 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md shadow-indigo-600/25 flex items-center space-x-1.5 transition-all active:scale-95"
+          className="px-4 py-2.5 sm:px-5 sm:py-3 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md shadow-indigo-600/25 flex items-center space-x-1.5 transition-all active:scale-95 shrink-0"
         >
           <span>Send</span>
           <Send className="w-3.5 h-3.5" />

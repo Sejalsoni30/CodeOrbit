@@ -1,12 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import { Sparkles, Shield, Scale, FileText } from 'lucide-react';
 
 export const Footer = () => {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   return (
-    <footer className="border-t border-slate-200/80 dark:border-slate-800/80 py-6 px-6 text-xs text-slate-500 dark:text-slate-400 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl relative z-10 transition-colors">
+    <footer className={`border-t border-slate-200/80 dark:border-slate-800/80 py-6 px-4 sm:px-6 text-xs text-slate-500 dark:text-slate-400 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl relative z-10 transition-colors ${
+      currentUser ? 'mb-14 lg:mb-0' : ''
+    }`}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Brand identity */}
         <div className="flex items-center space-x-2">

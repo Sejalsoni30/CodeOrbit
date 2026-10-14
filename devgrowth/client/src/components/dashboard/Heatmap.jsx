@@ -30,7 +30,7 @@ export const Heatmap = () => {
   ];
 
   return (
-    <div className="p-5 sm:p-6 glass-card relative">
+    <div className="p-4 sm:p-6 glass-card relative">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
         <div>
           <div className="flex items-center space-x-2">
@@ -57,8 +57,8 @@ export const Heatmap = () => {
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="overflow-x-auto pb-2">
+      {/* Grid with smooth touch scrolling */}
+      <div className="overflow-x-auto pb-2 touch-pan-x scrollbar-thin">
         <div className="grid grid-flow-col grid-rows-7 gap-1.5 min-w-[480px]">
           {data.map((d) => (
             <button
@@ -74,21 +74,21 @@ export const Heatmap = () => {
       </div>
 
       {/* Tooltip / Active Inspection Bar */}
-      <div className="mt-3 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-        <div className="flex items-center space-x-2">
-          <Info className="w-3.5 h-3.5 text-indigo-400" />
+      <div className="mt-3 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex items-center space-x-2 min-w-0">
+          <Info className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
           {selectedDay ? (
-            <span>
+            <span className="truncate">
               <strong className="text-slate-800 dark:text-white">Day {selectedDay.dayNumber}:</strong>{' '}
               {selectedDay.hours > 0
                 ? `${selectedDay.hours} hours logged • ${selectedDay.tasks} tasks completed`
                 : 'Rest day / No logged activity'}
             </span>
           ) : (
-            <span>Hover or click any square to inspect activity details</span>
+            <span className="text-[11px] sm:text-xs">Tap or hover any square to inspect activity details</span>
           )}
         </div>
-        <span className="font-semibold text-indigo-500">92% Consistency</span>
+        <span className="font-semibold text-indigo-500 shrink-0">92% Consistency</span>
       </div>
     </div>
   );

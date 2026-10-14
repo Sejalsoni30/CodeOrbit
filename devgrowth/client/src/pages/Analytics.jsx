@@ -68,56 +68,56 @@ export const Analytics = () => {
         </div>
       </div>
 
-      {/* KPI Highlights */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-5 glass-card relative overflow-hidden">
-          <div className="flex items-center space-x-2 text-indigo-500 text-xs font-bold uppercase mb-2">
-            <Clock className="w-4 h-4" />
+      {/* KPI Highlights: 2 columns on mobile, 4 on desktop */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="p-3.5 sm:p-5 glass-card relative overflow-hidden">
+          <div className="flex items-center space-x-1.5 sm:space-x-2 text-indigo-500 text-[10px] sm:text-xs font-bold uppercase mb-1.5 sm:mb-2">
+            <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span>Time Logged</span>
           </div>
-          <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+          <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
             {totalHours} hrs
           </div>
-          <p className="text-xs text-emerald-400 font-semibold mt-1">
-            +4.2 hrs vs last week
+          <p className="text-[10px] sm:text-xs text-emerald-400 font-semibold mt-1">
+            +4.2 hrs vs last wk
           </p>
         </div>
 
-        <div className="p-5 glass-card relative overflow-hidden">
-          <div className="flex items-center space-x-2 text-purple-500 text-xs font-bold uppercase mb-2">
-            <Target className="w-4 h-4" />
+        <div className="p-3.5 sm:p-5 glass-card relative overflow-hidden">
+          <div className="flex items-center space-x-1.5 sm:space-x-2 text-purple-500 text-[10px] sm:text-xs font-bold uppercase mb-1.5 sm:mb-2">
+            <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span>Tasks Solved</span>
           </div>
-          <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+          <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
             {totalTasks}
           </div>
-          <p className="text-xs text-indigo-400 font-semibold mt-1">
-            85% on-time completion
+          <p className="text-[10px] sm:text-xs text-indigo-400 font-semibold mt-1">
+            85% on-time
           </p>
         </div>
 
-        <div className="p-5 glass-card relative overflow-hidden">
-          <div className="flex items-center space-x-2 text-emerald-500 text-xs font-bold uppercase mb-2">
-            <Zap className="w-4 h-4" />
-            <span>Velocity Score</span>
+        <div className="p-3.5 sm:p-5 glass-card relative overflow-hidden">
+          <div className="flex items-center space-x-1.5 sm:space-x-2 text-emerald-500 text-[10px] sm:text-xs font-bold uppercase mb-1.5 sm:mb-2">
+            <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span>Velocity</span>
           </div>
-          <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+          <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
             88 / 100
           </div>
-          <p className="text-xs text-emerald-400 font-semibold mt-1">
+          <p className="text-[10px] sm:text-xs text-emerald-400 font-semibold mt-1">
             Tier 1 High Performer
           </p>
         </div>
 
-        <div className="p-5 glass-card relative overflow-hidden">
-          <div className="flex items-center space-x-2 text-cyan-500 text-xs font-bold uppercase mb-2">
-            <Award className="w-4 h-4" />
+        <div className="p-3.5 sm:p-5 glass-card relative overflow-hidden">
+          <div className="flex items-center space-x-1.5 sm:space-x-2 text-cyan-500 text-[10px] sm:text-xs font-bold uppercase mb-1.5 sm:mb-2">
+            <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span>Focus Ratio</span>
           </div>
-          <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+          <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
             94%
           </div>
-          <p className="text-xs text-slate-400 font-medium mt-1">
+          <p className="text-[10px] sm:text-xs text-slate-400 font-medium mt-1">
             Deep work index
           </p>
         </div>
@@ -126,9 +126,9 @@ export const Analytics = () => {
       {/* Main Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Hours Dedicated Bar Chart */}
-        <div className="p-6 glass-card flex flex-col justify-between">
+        <div className="p-4 sm:p-6 glass-card flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4 gap-2">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                   Daily Engineering Hours ({timeframe})
@@ -137,26 +137,27 @@ export const Analytics = () => {
                   Peak study on Thursday (7.8 hrs)
                 </p>
               </div>
-              <span className="text-xs font-bold text-indigo-500 bg-indigo-500/10 px-2.5 py-1 rounded-full border border-indigo-500/20">
+              <span className="text-[11px] sm:text-xs font-bold text-indigo-500 bg-indigo-500/10 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-indigo-500/20 shrink-0">
                 Avg: {(totalHours / 7).toFixed(1)}h / day
               </span>
             </div>
 
             {/* Bars Visual */}
-            <div className="h-52 flex items-end justify-between space-x-2 sm:space-x-3 pt-6 pb-2">
+            <div className="h-52 flex items-end justify-between space-x-1.5 sm:space-x-3 pt-6 pb-2">
               {weeklyData.map((d, i) => {
                 const heightPercent = (d.hours / 8.5) * 100;
                 const isHovered = hoveredDay === i;
                 return (
                   <div
                     key={i}
+                    onClick={() => setHoveredDay(hoveredDay === i ? null : i)}
                     onMouseEnter={() => setHoveredDay(i)}
                     onMouseLeave={() => setHoveredDay(null)}
-                    className="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative"
+                    className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer relative"
                   >
-                    {/* Tooltip on bar hover */}
+                    {/* Tooltip on bar hover / tap */}
                     {isHovered && (
-                      <div className="absolute -top-12 z-20 bg-slate-900 text-white border border-slate-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap shadow-xl">
+                      <div className="absolute -top-12 z-20 bg-slate-900 text-white border border-slate-700 px-2.5 py-1 rounded-lg text-[10px] sm:text-[11px] font-semibold whitespace-nowrap shadow-xl">
                         {d.hours} hrs • {d.tasks} tasks
                       </div>
                     )}
@@ -171,7 +172,7 @@ export const Analytics = () => {
                         style={{ height: `${heightPercent}%` }}
                       />
                     </div>
-                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 group-hover:text-indigo-400">
+                    <span className="text-[11px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 group-hover:text-indigo-400">
                       {d.day}
                     </span>
                   </div>
@@ -180,18 +181,18 @@ export const Analytics = () => {
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 text-xs text-slate-400 flex items-center justify-between">
-            <span>
+          <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 text-xs text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span className="truncate">
               {hoveredDay !== null
                 ? `${weeklyData[hoveredDay].day}: ${weeklyData[hoveredDay].label}`
-                : 'Hover over bars to inspect daily focus topics'}
+                : 'Tap or hover bars to inspect daily focus topics'}
             </span>
-            <TrendingUp className="w-4 h-4 text-emerald-400" />
+            <TrendingUp className="w-4 h-4 text-emerald-400 shrink-0 hidden sm:block" />
           </div>
         </div>
 
         {/* Competency Distribution */}
-        <div className="p-6 glass-card flex flex-col justify-between">
+        <div className="p-4 sm:p-6 glass-card flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>

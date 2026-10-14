@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import Footer from './Footer';
 import BackgroundMesh from '../common/BackgroundMesh';
 import { useAuth } from '../../hooks/useAuth';
+import MobileBottomNav from './MobileBottomNav';
 import { AuthModal, GoogleAuthenticatorModal } from '../auth';
 
 export const PageWrapper = ({ children }) => {
@@ -16,7 +17,7 @@ export const PageWrapper = ({ children }) => {
 
   if (isTermsRoute) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative">
+      <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden">
         <BackgroundMesh />
         <Navbar />
         <main className="flex-1 w-full relative z-10">
@@ -31,7 +32,7 @@ export const PageWrapper = ({ children }) => {
 
   if (isLandingRoute) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative">
+      <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden">
         <BackgroundMesh />
         <main className="flex-1 w-full relative z-10">
           {children}
@@ -44,10 +45,10 @@ export const PageWrapper = ({ children }) => {
 
   if (isAuthRoute) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative">
+      <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden">
         <BackgroundMesh />
         <Navbar />
-        <main className="flex-1 flex items-center justify-center p-4 sm:p-6 w-full relative z-10">
+        <main className="flex-1 flex items-center justify-center p-3 sm:p-6 w-full relative z-10">
           {children}
         </main>
         <Footer />
@@ -58,17 +59,27 @@ export const PageWrapper = ({ children }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative">
+    <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden">
       <BackgroundMesh />
       <Navbar />
 
-      <div className="flex flex-1 relative z-10">
+      <div className="flex flex-1 relative z-10 w-full min-w-0">
         <Sidebar />
-        <main className="flex-1 p-5 md:p-8 max-w-7xl mx-auto w-full overflow-y-auto">
+        <main className="flex-1 min-w-0 p-3 sm:p-5 md:p-8 max-w-7xl mx-auto w-full overflow-y-auto pb-24 lg:pb-8">
           {children}
         </main>
       </div>
+
       <Footer />
+
+      {/* Floating/Docked Mobile Bottom Navigation for logged-in users */}
+      {currentUser && (
+        <MobileBottomNav
+          onOpenMore={() => {
+            window.dispatchEvent(new CustomEvent('toggle-mobile-menu'));
+          }}
+        />
+      )}
 
       {/* Global Auth & 2FA Modals */}
       <AuthModal />

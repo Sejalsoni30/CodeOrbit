@@ -43,7 +43,7 @@ export const ActivityWidget = () => {
   const filtered = filter === 'All' ? activities : activities.filter(a => a.type === filter);
 
   return (
-    <div className="p-5 sm:p-6 glass-card flex flex-col justify-between">
+    <div className="p-4 sm:p-6 glass-card flex flex-col justify-between">
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
@@ -54,7 +54,7 @@ export const ActivityWidget = () => {
           </div>
           <button
             onClick={() => setShowAdd(!showAdd)}
-            className="flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 transition-all"
+            className="flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 transition-all shrink-0"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Log Milestone</span>
@@ -62,7 +62,7 @@ export const ActivityWidget = () => {
         </div>
 
         {/* Filter chips */}
-        <div className="flex space-x-1.5 mb-3 text-xs">
+        <div className="flex space-x-1.5 mb-3 text-xs overflow-x-auto pb-1 touch-pan-x">
           {['All', 'Goal', 'Skill', 'Portfolio'].map((f) => (
             <button
               key={f}

@@ -159,11 +159,11 @@ export const DailyGoals = () => {
             className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-xs sm:text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
 
-          <div className="flex gap-2">
+          <div className="grid grid-cols-2 sm:flex gap-2">
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none"
+              className="px-3 py-2 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none w-full sm:w-auto"
             >
               <option value="Coding">Coding</option>
               <option value="Algorithms">Algorithms</option>
@@ -176,7 +176,7 @@ export const DailyGoals = () => {
             <select
               value={selectedPriority}
               onChange={(e) => setSelectedPriority(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none"
+              className="px-3 py-2 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none w-full sm:w-auto"
             >
               <option value="High">High</option>
               <option value="Medium">Medium</option>
@@ -185,7 +185,7 @@ export const DailyGoals = () => {
 
             <button
               type="submit"
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/20 flex items-center space-x-1 shrink-0"
+              className="col-span-2 sm:col-span-1 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/20 flex items-center justify-center space-x-1 shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>Add Goal</span>
@@ -228,7 +228,7 @@ export const DailyGoals = () => {
           <div
             key={goal.id}
             onClick={() => toggleGoal(goal.id)}
-            className={`p-4 glass-card-hover flex items-center justify-between cursor-pointer group transition-all ${
+            className={`p-3.5 sm:p-4 glass-card-hover flex items-center justify-between cursor-pointer group transition-all ${
               goal.completed ? 'opacity-70 dark:opacity-60 bg-slate-50/50 dark:bg-slate-900/40' : ''
             }`}
           >
@@ -246,7 +246,7 @@ export const DailyGoals = () => {
 
               <div className="min-w-0 flex-1">
                 <p
-                  className={`text-xs sm:text-sm font-semibold transition-all ${
+                  className={`text-xs sm:text-sm font-semibold transition-all break-words ${
                     goal.completed
                       ? 'line-through text-slate-400 dark:text-slate-500'
                       : 'text-slate-900 dark:text-slate-100'
@@ -254,7 +254,7 @@ export const DailyGoals = () => {
                 >
                   {goal.title}
                 </p>
-                <div className="flex items-center space-x-2 text-[10px] text-slate-400 mt-0.5">
+                <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-slate-400 mt-0.5">
                   <span className="font-medium text-indigo-500">{goal.category}</span>
                   <span>•</span>
                   <span className={`px-1.5 py-0.2 rounded font-bold border ${getPriorityStyle(goal.priority)}`}>
@@ -266,7 +266,7 @@ export const DailyGoals = () => {
 
             <button
               onClick={(e) => handleDelete(goal.id, e)}
-              className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-rose-500 p-1.5 transition-all"
+              className="opacity-70 sm:opacity-0 sm:group-hover:opacity-100 text-slate-400 hover:text-rose-500 p-1.5 transition-all"
               title="Delete task"
             >
               <Trash2 className="w-4 h-4" />

@@ -36,7 +36,7 @@ export const Sidebar = () => {
   } = useAuth();
 
   return (
-    <aside className="w-64 glass-sidebar flex flex-col justify-between p-4 shrink-0 h-[calc(100vh-4rem)] sticky top-16 transition-colors">
+    <aside className="hidden lg:flex w-64 glass-sidebar flex-col justify-between p-4 shrink-0 h-[calc(100vh-4rem)] sticky top-16 transition-colors">
       <div className="space-y-6">
         {/* Navigation list */}
         <div>

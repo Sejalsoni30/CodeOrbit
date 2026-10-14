@@ -117,7 +117,7 @@ export const SkillTracker = () => {
 
         <button
           onClick={() => setShowAddModal(true)}
-          className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all self-start sm:self-auto"
+          className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Skill</span>
@@ -125,29 +125,29 @@ export const SkillTracker = () => {
       </div>
 
       {/* Metrics Row */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-4 glass-card">
-          <p className="text-xs text-slate-400 font-medium">Total Skills</p>
-          <p className="text-2xl font-bold text-slate-900 dark:text-white mt-0.5">{skills.length}</p>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="p-3 sm:p-4 glass-card">
+          <p className="text-[11px] sm:text-xs text-slate-400 font-medium">Total Skills</p>
+          <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-0.5">{skills.length}</p>
         </div>
-        <div className="p-4 glass-card">
-          <p className="text-xs text-slate-400 font-medium">Average Depth</p>
-          <p className="text-2xl font-bold text-indigo-500 mt-0.5">{avgProficiency}%</p>
+        <div className="p-3 sm:p-4 glass-card">
+          <p className="text-[11px] sm:text-xs text-slate-400 font-medium">Average Depth</p>
+          <p className="text-xl sm:text-2xl font-bold text-indigo-500 mt-0.5">{avgProficiency}%</p>
         </div>
-        <div className="p-4 glass-card">
-          <p className="text-xs text-slate-400 font-medium">Master Level (&gt;80%)</p>
-          <p className="text-2xl font-bold text-emerald-400 mt-0.5">{masterCount}</p>
+        <div className="p-3 sm:p-4 glass-card">
+          <p className="text-[11px] sm:text-xs text-slate-400 font-medium truncate">Master Level (&gt;80%)</p>
+          <p className="text-xl sm:text-2xl font-bold text-emerald-400 mt-0.5">{masterCount}</p>
         </div>
-        <div className="p-4 glass-card">
-          <p className="text-xs text-slate-400 font-medium">Target Stack</p>
-          <p className="text-2xl font-bold text-purple-400 mt-0.5">Senior Full Stack</p>
+        <div className="p-3 sm:p-4 glass-card">
+          <p className="text-[11px] sm:text-xs text-slate-400 font-medium">Target Stack</p>
+          <p className="text-sm sm:text-lg font-bold text-purple-400 mt-1 truncate">Senior Full Stack</p>
         </div>
       </div>
 
       {/* Filters and Search Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
         {/* Category Pills */}
-        <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-xs">
+        <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-xs touch-pan-x scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -183,25 +183,25 @@ export const SkillTracker = () => {
           return (
             <div
               key={skill.id}
-              className="p-5 glass-card-hover group relative flex flex-col justify-between"
+              className="p-4 sm:p-5 glass-card-hover group relative flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center space-x-2">
-                    <span className="font-bold text-sm text-slate-900 dark:text-white">
+                <div className="flex items-start justify-between mb-2 gap-2">
+                  <div className="flex flex-wrap items-center gap-1.5 min-w-0 flex-1">
+                    <span className="font-bold text-sm text-slate-900 dark:text-white break-words">
                       {skill.name}
                     </span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${badge.color}`}>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${badge.color} shrink-0`}>
                       {badge.label}
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 shrink-0">
                     <span className="text-sm font-extrabold text-indigo-500">
                       {skill.proficiency}%
                     </span>
                     <button
                       onClick={() => handleDelete(skill.id)}
-                      className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-rose-500 transition-all p-1"
+                      className="opacity-70 sm:opacity-0 sm:group-hover:opacity-100 text-slate-400 hover:text-rose-500 transition-all p-1"
                       title="Delete skill"
                     >
                       <Trash2 className="w-3.5 h-3.5" />

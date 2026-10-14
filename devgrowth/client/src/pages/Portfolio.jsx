@@ -146,7 +146,7 @@ export const Portfolio = () => {
 
         <button
           onClick={() => setShowAdd(true)}
-          className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all self-start sm:self-auto"
+          className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add Project</span>
@@ -154,7 +154,7 @@ export const Portfolio = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-xs">
+      <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 text-xs touch-pan-x scrollbar-none">
         {allTags.map((tag) => (
           <button
             key={tag}
@@ -171,27 +171,27 @@ export const Portfolio = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         {filtered.map((proj) => (
           <div
             key={proj.id}
-            className="p-6 glass-card-hover flex flex-col justify-between group relative"
+            className="p-4 sm:p-6 glass-card-hover flex flex-col justify-between group relative"
           >
             <div>
               <div className="flex items-start justify-between gap-2 mb-2">
-                <div className="flex items-center space-x-2">
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-400 transition-colors">
+                <div className="flex flex-wrap items-center gap-1.5 min-w-0 flex-1">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-400 transition-colors break-words">
                     {proj.title}
                   </h3>
                   {proj.featured && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center space-x-1">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center space-x-1 shrink-0">
                       <Star className="w-2.5 h-2.5 fill-amber-400" />
                       <span>Featured</span>
                     </span>
                   )}
                 </div>
 
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center space-x-1 shrink-0">
                   <button
                     onClick={() => toggleStar(proj.id)}
                     className="p-1 text-slate-400 hover:text-amber-400 transition-colors"
@@ -205,7 +205,7 @@ export const Portfolio = () => {
                   </button>
                   <button
                     onClick={() => handleDelete(proj.id)}
-                    className="p-1 opacity-0 group-hover:opacity-100 text-slate-400 hover:text-rose-500 transition-all"
+                    className="p-1 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 text-slate-400 hover:text-rose-500 transition-all"
                     title="Delete project"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -218,11 +218,11 @@ export const Portfolio = () => {
               </p>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-1.5 mb-6">
+              <div className="flex flex-wrap gap-1.5 mb-5 sm:mb-6">
                 {proj.tags.map((t, i) => (
                   <span
                     key={i}
-                    className="text-[11px] px-2.5 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-medium border border-slate-200/50 dark:border-slate-700/50"
+                    className="text-[10px] sm:text-[11px] px-2 sm:px-2.5 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-medium border border-slate-200/50 dark:border-slate-700/50"
                   >
                     {t}
                   </span>
@@ -231,23 +231,23 @@ export const Portfolio = () => {
             </div>
 
             {/* Links and Stats */}
-            <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800/80 text-xs font-semibold">
-              <div className="flex space-x-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-3 sm:pt-4 border-t border-slate-100 dark:border-slate-800/80 text-xs font-semibold">
+              <div className="flex flex-wrap gap-2.5 sm:gap-4">
                 <a
                   href={proj.repoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center space-x-1.5 text-indigo-500 hover:text-indigo-400 transition-colors"
+                  className="flex items-center space-x-1 text-indigo-500 hover:text-indigo-400 transition-colors text-[11px] sm:text-xs"
                 >
                   <Github className="w-3.5 h-3.5" />
-                  <span>GitHub Repository</span>
+                  <span>GitHub</span>
                 </a>
                 {proj.liveUrl !== '#' && (
                   <a
                     href={proj.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center space-x-1 text-slate-400 hover:text-slate-200 transition-colors"
+                    className="flex items-center space-x-1 text-slate-400 hover:text-slate-200 transition-colors text-[11px] sm:text-xs"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                     <span>Live Demo</span>

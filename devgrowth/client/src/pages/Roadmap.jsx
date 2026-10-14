@@ -165,7 +165,7 @@ export const Roadmap = () => {
 
         <button
           onClick={() => setShowAdd(true)}
-          className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all self-start sm:self-auto"
+          className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add Milestone</span>
@@ -173,13 +173,13 @@ export const Roadmap = () => {
       </div>
 
       {/* Progress banner */}
-      <div className="p-5 glass-card bg-gradient-to-r from-indigo-500/10 via-purple-500/5 to-transparent border border-indigo-500/20">
+      <div className="p-4 sm:p-5 glass-card bg-gradient-to-r from-indigo-500/10 via-purple-500/5 to-transparent border border-indigo-500/20">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-500">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-indigo-500">
               Target Level: L6 Staff Engineer
             </span>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
               {completedCount} of {milestones.length} Strategic Milestones Achieved ({progressPercent}%)
             </h3>
           </div>
@@ -194,42 +194,42 @@ export const Roadmap = () => {
       </div>
 
       {/* Timeline view */}
-      <div className="relative border-l-2 border-indigo-500/30 ml-4 sm:ml-6 space-y-8 pl-6 sm:pl-8">
+      <div className="relative border-l-2 border-indigo-500/30 ml-2.5 sm:ml-6 space-y-6 sm:space-y-8 pl-4 sm:pl-8">
         {milestones.map((m) => (
           <div key={m.id} className="relative group">
             {/* Status node */}
             <button
               onClick={() => toggleStatus(m.id)}
-              className={`absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
+              className={`absolute -left-[21px] sm:-left-[43px] top-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center transition-all ${
                 m.status === 'Completed'
-                  ? 'bg-emerald-500 text-white ring-4 ring-emerald-500/20'
+                  ? 'bg-emerald-500 text-white ring-2 sm:ring-4 ring-emerald-500/20'
                   : m.status === 'In Progress'
-                  ? 'bg-indigo-600 text-white ring-4 ring-indigo-500/20 animate-pulse'
-                  : 'bg-slate-700 text-slate-400 ring-4 ring-slate-800'
+                  ? 'bg-indigo-600 text-white ring-2 sm:ring-4 ring-indigo-500/20 animate-pulse'
+                  : 'bg-slate-700 text-slate-400 ring-2 sm:ring-4 ring-slate-800'
               }`}
               title="Click to toggle status"
             >
               {m.status === 'Completed' ? (
-                <CheckCircle2 className="w-4 h-4" />
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               ) : (
-                <Circle className="w-3.5 h-3.5" />
+                <Circle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               )}
             </button>
 
             {/* Card Content */}
-            <div className="p-6 glass-card-hover">
+            <div className="p-4 sm:p-6 glass-card-hover">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-xs font-extrabold text-indigo-500 bg-indigo-500/10 px-2.5 py-0.5 rounded-md border border-indigo-500/20">
                     {m.date}
                   </span>
-                  <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
                     {m.title}
                   </h4>
                 </div>
                 <button
                   onClick={() => toggleStatus(m.id)}
-                  className={`text-xs font-bold px-2.5 py-1 rounded-full border self-start sm:self-auto cursor-pointer ${getStatusBadge(
+                  className={`text-[11px] sm:text-xs font-bold px-2.5 py-1 rounded-full border self-start sm:self-auto cursor-pointer ${getStatusBadge(
                     m.status
                   )}`}
                 >
