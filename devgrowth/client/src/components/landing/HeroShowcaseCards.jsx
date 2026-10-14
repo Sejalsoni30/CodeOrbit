@@ -18,7 +18,7 @@ import {
  */
 export const HeroShowcaseCards = () => {
   const { currentUser } = useAuth();
-  const userName = currentUser?.displayName ? currentUser.displayName.split(' ')[0] : 'Sejal';
+  const userName = currentUser?.displayName ? currentUser.displayName.split(' ')[0] : '{username}';
   return (
     <div className="relative w-full max-w-[700px] mx-auto pt-10 pb-16 select-none overflow-visible">
       {/* Background Decorative Faint Wavy Orbit Trail */}

@@ -43,7 +43,7 @@ export const LandingPage = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [targetAuthPage, setTargetAuthPage] = useState('login');
-  const [activePreviewTab, setActivePreviewTab] = useState('dashboard');
+  const [activePreviewTab, setActivePreviewTab] = useState('ai');
   const [calcLevel, setCalcLevel] = useState('L4 Associate');
 
   // Triggers the 2-second smooth loading animation before redirecting to /login or /register
@@ -251,18 +251,18 @@ export const LandingPage = () => {
         </div>
 
         {/* INTERACTIVE PLATFORM MOCKUP PREVIEW */}
-        <div id="preview" className="mt-16 sm:mt-20 max-w-5xl mx-auto rounded-3xl glass-card border border-indigo-500/25 p-3 sm:p-5 shadow-2xl relative overflow-hidden group">
+        <div id="preview" className="mt-16 sm:mt-20 max-w-5xl mx-auto rounded-[28px] sm:rounded-[36px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-4 sm:p-6 shadow-[0_25px_60px_-15px_rgba(99,102,241,0.12)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.65)] relative overflow-hidden group">
           {/* Top Browser Bar */}
-          <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200/80 dark:border-slate-800/80 px-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 px-2">
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-              <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-              <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-              <span className="text-[11px] font-mono text-slate-400 ml-2">codeorbit.app/dashboard</span>
+              <div className="w-3 h-3 rounded-full bg-[#f87171]" />
+              <div className="w-3 h-3 rounded-full bg-[#fbbf24]" />
+              <div className="w-3 h-3 rounded-full bg-[#34d399]" />
+              <span className="text-xs font-mono text-slate-400 ml-2.5">codeorbit.app/dashboard</span>
             </div>
 
             {/* Interactive Preview Tab Switcher */}
-            <div className="flex items-center space-x-1 bg-slate-100 dark:bg-slate-800/80 p-1 rounded-xl">
+            <div className="flex items-center space-x-1 bg-slate-100/90 dark:bg-slate-800/90 p-1 rounded-full overflow-x-auto">
               {[
                 { id: 'dashboard', label: 'Dashboard Hub' },
                 { id: 'skills', label: 'Skill Matrix' },
@@ -272,10 +272,10 @@ export const LandingPage = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActivePreviewTab(tab.id)}
-                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs transition-all whitespace-nowrap ${
                     activePreviewTab === tab.id
-                      ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                      ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 font-bold shadow-sm border border-slate-200/60 dark:border-slate-700/60'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold'
                   }`}
                 >
                   {tab.label}
@@ -285,7 +285,7 @@ export const LandingPage = () => {
           </div>
 
           {/* Interactive Preview Content */}
-          <div className="bg-slate-900/90 rounded-2xl p-5 sm:p-7 text-left text-white border border-slate-800 relative overflow-hidden min-h-[360px]">
+          <div className="bg-[#141d2e] dark:bg-[#0c1220] rounded-[22px] sm:rounded-[26px] p-6 sm:p-8 md:p-9 text-left text-white border border-slate-700/50 dark:border-slate-800 relative overflow-hidden min-h-[340px]">
             {activePreviewTab === 'dashboard' && (
               <div className="space-y-5 animate-in fade-in duration-200">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20">
@@ -313,17 +313,17 @@ export const LandingPage = () => {
 
                 {/* KPI metric mock row */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                  <div className="p-4 rounded-xl bg-[#090e18]/85 border border-slate-700/70">
                     <p className="text-xs text-slate-400 font-medium">Sprint Competencies</p>
                     <p className="text-2xl font-black text-indigo-400 mt-1">18 Skills</p>
                     <p className="text-[11px] text-emerald-400 mt-0.5 font-semibold">92% Average Proficiency</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                  <div className="p-4 rounded-xl bg-[#090e18]/85 border border-slate-700/70">
                     <p className="text-xs text-slate-400 font-medium">Sprint Daily Tasks</p>
                     <p className="text-2xl font-black text-purple-400 mt-1">8 / 10 Done</p>
                     <p className="text-[11px] text-purple-300 mt-0.5 font-semibold">80% Completion Rate</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                  <div className="p-4 rounded-xl bg-[#090e18]/85 border border-slate-700/70">
                     <p className="text-xs text-slate-400 font-medium">Promotion Target</p>
                     <p className="text-2xl font-black text-pink-400 mt-1">L6 Staff</p>
                     <p className="text-[11px] text-pink-300 mt-0.5 font-semibold">Milestone 2 of 4 Active</p>
@@ -348,7 +348,7 @@ export const LandingPage = () => {
                     { name: 'Node.js Express & Microservices', cat: 'Backend', pct: 85, color: 'bg-cyan-500' },
                     { name: 'Distributed Systems & Observability', cat: 'Architecture', pct: 78, color: 'bg-emerald-500' },
                   ].map((s, idx) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/60">
+                    <div key={idx} className="p-3.5 rounded-xl bg-[#090e18]/85 border border-slate-700/70">
                       <div className="flex justify-between text-xs font-bold mb-1.5">
                         <span className="text-slate-200">{s.name} <span className="text-[10px] text-slate-400 ml-1">({s.cat})</span></span>
                         <span className="text-indigo-400">{s.pct}%</span>
@@ -376,7 +376,7 @@ export const LandingPage = () => {
                   { phase: 'Phase 2: Scale & Resiliency', desc: 'Implement redis caching, database partitions, and load resiliency', done: true },
                   { phase: 'Phase 3: Cross-Team Engineering Leadership', desc: 'Author RFCs, conduct design reviews, and establish technical standards', done: false },
                 ].map((r, i) => (
-                  <div key={i} className={`p-3.5 rounded-xl border flex items-start space-x-3 ${r.done ? 'bg-indigo-500/10 border-indigo-500/30' : 'bg-slate-800/40 border-slate-700/50'}`}>
+                  <div key={i} className={`p-3.5 rounded-xl border flex items-start space-x-3 ${r.done ? 'bg-indigo-500/10 border-indigo-500/30' : 'bg-[#090e18]/85 border-slate-700/60'}`}>
                     <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold ${r.done ? 'bg-indigo-600 text-white' : 'border border-slate-600 text-slate-400'}`}>
                       {r.done ? '✓' : i + 1}
                     </div>
@@ -390,20 +390,23 @@ export const LandingPage = () => {
             )}
 
             {activePreviewTab === 'ai' && (
-              <div className="space-y-3 animate-in fade-in duration-200">
-                <div className="flex items-center justify-between mb-1">
-                  <h4 className="text-sm font-bold text-white flex items-center space-x-2">
-                    <Bot className="w-4 h-4 text-purple-400" />
+              <div className="space-y-4 animate-in fade-in duration-200">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm sm:text-base font-extrabold text-white flex items-center space-x-2.5 tracking-tight">
+                    <Bot className="w-5 h-5 text-purple-400 shrink-0" />
                     <span>Google Gemini 2.5 Flash Engineering Advisor</span>
                   </h4>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-bold uppercase">
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#4c1d95]/80 text-purple-200 border border-purple-500/30">
                     AI Active
                   </span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700 text-xs text-slate-300 space-y-2">
-                  <p className="font-semibold text-indigo-400">User Query: "How can I demonstrate L6 Staff scope while leading my team's cloud migration?"</p>
-                  <p className="text-slate-200 leading-relaxed border-t border-slate-700/60 pt-2">
-                    <strong className="text-purple-300">Gemini Advisor:</strong> "At L6 Staff, your value lies in cross-organizational clarity. Frame your cloud migration as an architectural blueprint: document trade-offs with an Architecture Decision Record (ADR), implement cost guardrails with observability, and mentor 2 junior engineers through critical modules."
+                <div className="p-5 sm:p-6 rounded-2xl bg-[#090e18]/85 border border-slate-700/70 text-xs sm:text-sm text-slate-300 space-y-3.5 mt-4">
+                  <p className="font-semibold text-indigo-300">
+                    User Query: <span className="font-normal text-slate-200">"How can I demonstrate L6 Staff scope while leading my team's cloud migration?"</span>
+                  </p>
+                  <p className="text-slate-200 leading-relaxed border-t border-slate-700/70 pt-3">
+                    <strong className="text-purple-400 font-extrabold">Gemini Advisor:</strong>{" "}
+                    "At L6 Staff, your value lies in cross-organizational clarity. Frame your cloud migration as an architectural blueprint: document trade-offs with an Architecture Decision Record (ADR), implement cost guardrails with observability, and mentor 2 junior engineers through critical modules."
                   </p>
                 </div>
               </div>
