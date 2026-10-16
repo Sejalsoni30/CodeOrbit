@@ -8,6 +8,8 @@ import DailyGoals from './pages/DailyGoals';
 import Analytics from './pages/Analytics';
 import Roadmap from './pages/Roadmap';
 import Portfolio from './pages/Portfolio';
+import PublicPortfolio from './pages/PublicPortfolio';
+import ResumeParser from './pages/ResumeParser';
 import AIAssistant from './pages/AIAssistant';
 import AuthPage from './pages/AuthPage';
 import LandingPage from './pages/LandingPage';
@@ -52,6 +54,11 @@ function App() {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
+        {/* Shareable Public Portfolio Pages (no login required for recruiters / viewers) */}
+        <Route path="/portfolio/public" element={<PublicPortfolio />} />
+        <Route path="/portfolio/public/:username" element={<PublicPortfolio />} />
+        <Route path="/p/:username" element={<PublicPortfolio />} />
+
         {/* Auth routes */}
         <Route path="/login" element={<PublicAuthRoute initialTab="login" />} />
         <Route path="/register" element={<PublicAuthRoute initialTab="register" />} />
@@ -66,6 +73,8 @@ function App() {
         <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
         <Route path="/roadmap" element={<ProtectedRoute><Roadmap /></ProtectedRoute>} />
         <Route path="/portfolio" element={<ProtectedRoute><Portfolio /></ProtectedRoute>} />
+        <Route path="/resume" element={<ProtectedRoute><ResumeParser /></ProtectedRoute>} />
+        <Route path="/ats-parser" element={<Navigate to="/resume" replace />} />
         <Route path="/ai-assistant" element={<ProtectedRoute><AIAssistant /></ProtectedRoute>} />
 
         {/* Catch-all */}

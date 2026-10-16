@@ -12,7 +12,8 @@ import {
   LogOut,
   LogIn,
   Flame,
-  Sparkles
+  Sparkles,
+  FileText
 } from 'lucide-react';
 import UserAvatar, { formatProfessionalRole } from '../common/UserAvatar';
 
@@ -22,7 +23,8 @@ const navItems = [
   { name: 'Daily Goals', path: '/goals', icon: CheckSquare, badge: 'Active' },
   { name: 'Analytics', path: '/analytics', icon: BarChart3 },
   { name: 'Roadmap', path: '/roadmap', icon: Milestone },
-  { name: 'Portfolio', path: '/portfolio', icon: FolderGit2, badge: '4' },
+  { name: 'Resume & ATS AI', path: '/resume', icon: FileText, badge: 'NEW' },
+  { name: 'Portfolio', path: '/portfolio', icon: FolderGit2, badge: 'Export' },
   { name: 'AI Assistant', path: '/ai-assistant', icon: Bot, highlight: true },
 ];
 

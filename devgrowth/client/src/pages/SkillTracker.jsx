@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Award,
   Plus,
@@ -115,13 +116,23 @@ export const SkillTracker = () => {
           </p>
         </div>
 
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all w-full sm:w-auto"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add New Skill</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          <Link
+            to="/resume"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-3.5 py-2.5 rounded-xl border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 text-xs font-bold transition-all text-center"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <span>Scan Resume ATS for Skills</span>
+          </Link>
+
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="flex-1 sm:flex-none inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Add New Skill</span>
+          </button>
+        </div>
       </div>
 
       {/* Metrics Row */}

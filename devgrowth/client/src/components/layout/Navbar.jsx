@@ -148,6 +148,27 @@ export const Navbar = () => {
             Roadmap
           </button>
           <button
+            onClick={() => navigate('/resume')}
+            className={`flex items-center space-x-1 px-3 py-1.5 rounded-xl transition-colors ${
+              location.pathname === '/resume'
+                ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold'
+                : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+            }`}
+          >
+            <span>Resume ATS</span>
+            <span className="text-[9px] px-1 py-0.2 rounded font-extrabold bg-gradient-to-r from-indigo-500 to-purple-500 text-white leading-none">AI</span>
+          </button>
+          <button
+            onClick={() => navigate('/portfolio')}
+            className={`px-3 py-1.5 rounded-xl transition-colors ${
+              location.pathname === '/portfolio' || location.pathname.startsWith('/portfolio/')
+                ? 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold'
+                : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+            }`}
+          >
+            Portfolio
+          </button>
+          <button
             onClick={() => navigate('/ai-assistant')}
             className={`px-3 py-1.5 rounded-xl transition-colors ${
               location.pathname === '/ai-assistant'
@@ -461,7 +482,8 @@ export const Navbar = () => {
                     { name: 'Daily Goals', path: '/goals', icon: CheckSquare, badge: 'Active' },
                     { name: 'Velocity Analytics', path: '/analytics', icon: BarChart3 },
                     { name: 'Staff Roadmap', path: '/roadmap', icon: Milestone },
-                    { name: 'Portfolio Showcase', path: '/portfolio', icon: FolderGit2, badge: '4' },
+                    { name: 'Resume & ATS Parser', path: '/resume', icon: FileText, badge: 'AI' },
+                    { name: 'Portfolio Showcase', path: '/portfolio', icon: FolderGit2, badge: 'PDF' },
                     { name: 'Gemini AI Advisor', path: '/ai-assistant', icon: Bot, isAi: true },
                   ].map((item) => {
                     const Icon = item.icon;
