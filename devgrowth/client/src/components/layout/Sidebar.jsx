@@ -38,8 +38,9 @@ export const Sidebar = () => {
   } = useAuth();
 
   return (
-    <aside className="hidden lg:flex w-64 glass-sidebar flex-col justify-between p-4 shrink-0 h-[calc(100vh-4rem)] sticky top-16 transition-colors">
-      <div className="space-y-6">
+    <aside className="hidden lg:flex fixed top-16 left-0 bottom-0 w-64 glass-sidebar flex-col p-4 z-30 overflow-y-auto scrollbar-none transition-colors">
+      <div className="flex-1 flex flex-col justify-between min-h-max space-y-6">
+        <div className="space-y-6">
         {/* Navigation list */}
         <div>
           <p className="px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
@@ -172,7 +173,8 @@ export const Sidebar = () => {
           </div>
         )}
       </div>
-    </aside>
+    </div>
+  </aside>
   );
 };
 

@@ -59,18 +59,19 @@ export const PageWrapper = ({ children }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#080c14] text-slate-900 dark:text-slate-100 transition-colors duration-200 relative">
       <BackgroundMesh />
       <Navbar />
 
       <div className="flex flex-1 relative z-10 w-full min-w-0">
         <Sidebar />
-        <main className="flex-1 min-w-0 p-3 sm:p-5 md:p-8 max-w-7xl mx-auto w-full overflow-y-auto pb-24 lg:pb-8">
-          {children}
-        </main>
+        <div className="flex-1 min-w-0 lg:pl-64 flex flex-col">
+          <main className="flex-1 min-w-0 p-3 sm:p-5 md:p-8 max-w-7xl mx-auto w-full pb-24 lg:pb-8">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </div>
-
-      <Footer />
 
       {/* Floating/Docked Mobile Bottom Navigation for logged-in users */}
       {currentUser && (

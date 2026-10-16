@@ -192,6 +192,15 @@ html.dark body {
   }
 }
 
+/* Utility to cleanly hide scrollbar while keeping scrollability */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Custom modern scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
