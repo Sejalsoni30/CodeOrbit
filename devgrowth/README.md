@@ -1,65 +1,22 @@
-# DevGrowth 🚀
+# DevGrowth 🪐
 
-> **Engineering Career Intelligence Platform**  
-> Full-Stack Application powered by **React 18, Vite, Tailwind CSS, Node.js Express, Firebase Firestore, and Google Gemini AI**.
+### **The Engineering Career Intelligence Platform**
 
----
-
-## 📁 Architecture Overview
-
-```text
-devgrowth/
-├── client/                              # Frontend (React 18 + Vite + Tailwind CSS)
-│   ├── public/                          # Favicon & static public assets
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── common/                  # Reusable UI elements (UserAvatar, Buttons, Modals)
-│   │   │   ├── layout/                  # Navbar, Sidebar, Footer, PageWrapper
-│   │   │   ├── dashboard/               # StatCard, Heatmap, ActivityWidget
-│   │   │   ├── profile/                 # ProfileModal for title, tier, & avatar management
-│   │   │   └── auth/                    # AuthModal & GoogleAuthenticatorModal (2FA)
-│   │   ├── context/                     # AuthContext (Firebase + Demo) & ThemeContext
-│   │   ├── hooks/                       # Custom React hooks (useAuth, useFetch)
-│   │   ├── pages/                       # Dashboard, SkillTracker, DailyGoals, Analytics, Roadmap, Portfolio, AIAssistant, AuthPage
-│   │   ├── services/                    # API communication layer (Axios interceptors)
-│   │   ├── config/                      # Firebase client configuration
-│   │   └── index.css                    # Tailwind CSS directives & glassmorphism utilities
-│   ├── vercel.json                      # Single Page Application rewrite rules for Vercel
-│   ├── .env.example                     # Sanitized environment template
-│   └── package.json
-│
-└── server/                              # Backend (Node.js + Express + Firebase Firestore)
-    ├── src/
-    │   ├── config/                      # Firestore database engine & Admin SDK initialization
-    │   ├── controllers/                 # Business logic for Auth, Users, Skills, Goals, Projects, and Gemini AI
-    │   ├── middleware/                  # Auth token verification & error middleware
-    │   ├── routes/                      # REST API routing (/api/*)
-    │   └── server.js                    # Express application entry point
-    ├── .env.example                     # Sanitized environment template
-    └── package.json
-```
+DevGrowth is the core application engine behind **CodeOrbit**, engineered to empower software engineers to benchmark technical proficiency, manage daily development sprints, navigate career milestones, and consult an AI mentor.
 
 ---
 
-## 🛠️ Technology Stack
+## 🌟 Core Value & User Capabilities
 
-| Layer | Technologies |
-|---|---|
-| **Frontend** | React 18, Vite, Tailwind CSS, Lucide React, Recharts |
-| **Backend** | Node.js, Express, Firebase Admin SDK |
-| **Database** | Google Cloud Firestore (Document Collections) |
-| **Authentication** | Firebase Authentication (Email/Password, Google OAuth, 2FA TOTP) |
-| **AI Integration** | Google Gemini 2.5 AI SDK |
-| **Deployment** | Vercel (Client SPA) & Render (Express Web Service) |
-
----
-
-## 🔒 Security Policy
-
-- All sensitive keys (`FIREBASE_API_KEY`, `GEMINI_API_KEY`, `serviceAccountKey.json`, `.env`) are **strictly excluded** from version control via `.gitignore`.
-- Production credentials should be injected securely via platform environment variable dashboards (Vercel & Render).
+- **📄 Resume Upload & ATS Intelligence Parser**: Upload PDF/DOCX resumes, extract technical skills and quantifiable project metrics with Google Gemini AI, and auto-populate roadmap milestones and skill gaps with one click.
+- **💼 Dynamic Portfolio Builder**: Automatically aggregates completed roadmap proof points, GitHub links, and skill proficiency radar into a customizable, shareable public portfolio with one-click PDF export.
+- **⚡ Skill Proficiency Tracker**: Granular technical proficiency radar across Frontend, Backend, Database, Cloud/DevOps, AI/Systems, and Languages with verified seniority rank badges.
+- **🗺️ Staff Career Roadmap**: Concrete quarterly milestone progression (Q1–Q4) with actionable deliverables from Senior Engineer (L5) to Staff Architect (L6).
+- **🎯 Daily Sprint & Velocity Engine**: Micro-milestone task lists, dynamic streak counters, and instant cloud persistence.
+- **📊 Engineering Analytics & Heatmaps**: Contribution heatmaps, sprint burn-down metrics, and velocity trend analysis.
+- **🤖 Gemini AI Career Mentor**: Intelligent architectural reviews, system design feedback, and mock interview preparation.
+- **🛡️ Enterprise Security**: Multi-factor authentication (2FA) with Google Authenticator and TOTP verification.
 
 ---
 
-## 📄 License
-MIT License.
+For comprehensive details on how CodeOrbit transforms software engineering careers, see the main [CodeOrbit Platform Documentation](../README.md).
